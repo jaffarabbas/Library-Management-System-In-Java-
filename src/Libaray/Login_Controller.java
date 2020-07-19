@@ -2,19 +2,30 @@ package Libaray;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class Login_Controller {
+
+    public AnchorPane Panel;
+    public AnchorPane login_page;
+
+
     public TextField username;
     public PasswordField password;
-    public Button submitbutton;
+    public Button login_button;
 
 
     //minimizw
@@ -27,41 +38,61 @@ public class Login_Controller {
         System.exit(1);
     }
 
-    public void login(ActionEvent event) throws SQLException, IOException,Exception {
+    public void submitbutton(ActionEvent event) throws SQLException, IOException,Exception {
 
 
-        Window owner = submitbutton.getScene().getWindow();
+        Window owner = login_button.getScene().getWindow();
 
         if(username.getText().isEmpty()) {
-            showAlert(AlertType.ERROR, owner, "Form Error!",
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter your email id");
             return;
         }
-        if(passwordField.getText().isEmpty()) {
-            showAlert(AlertType.ERROR, owner, "Form Error!",
+        if(password.getText().isEmpty()) {
+            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter a password");
             return;
         }
 
-        String emailId = .getText();
-        String password = passwordField.getText();
+        String user = username.getText();
+        String passwords = password.getText();
 
-        jdbcDao jdb = new jdbcDao();
-        boolean flag = jdb.validate(emailId, password);
+        DbConn jdb = new DbConn();
+        boolean flag = jdb.validate(user, passwords);
 
         if(!flag) {
             infoBox("Please enter correct Email and Password", null, "Failed");
         }else {
             infoBox("Login Successful!", null, "Failed");
-            Student_plane.setOpacity(100);
-            Student_plane.setDisable(false);
-            Login_plane.setOpacity(0);
-            Login_plane.setDisable(true);
-            UCategoryAxis.setText(jdbcDao.getUserId());
-            Chart();
-
-
+            Panel.setOpacity(100);
+            Panel.setDisable(false);
+            login_page.setOpacity(0);
+            login_page.setDisable(true);
         }
     }
 
+//
+//    public void displayDashborad(ActionEvent event) {
+//        Panel.setOpacity(100);
+//        Panel.setDisable(false);
+//        login_page.setOpacity(0);
+//        login_page.setDisable(true);
+//    }
+
+    private static void infoBox(String infoMessage, String headerText, String title){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
 }
