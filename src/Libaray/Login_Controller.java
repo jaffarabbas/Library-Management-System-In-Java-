@@ -3,6 +3,8 @@ package Libaray;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,6 +25,8 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Login_Controller {
 
@@ -75,12 +79,31 @@ public class Login_Controller {
                 }else {
                     infoBox("Login Successful!", null, "Failed");
 
-                    pannel_check.setOpacity(100);
-                    pannel_check.setDisable(false);
-                    login_page.setOpacity(0);
-                    login_page.setDisable(true);
+//                    pannel_check.setOpacity(100);
+//                    pannel_check.setDisable(false);
+//                    login_page.setOpacity(0);
+//                    login_page.setDisable(true);
+
+                    closeStage();
+                    LoadMain();
                 }
             }
+
+            public  void  closeStage(){
+                ((Stage)username.getScene().getWindow()).close();
+            }
+            public void LoadMain(){
+                 try{
+                     Parent parent = FXMLLoader.load(getClass().getResource("FXML/Pannel.fxml"));
+                     Stage stage = new Stage(StageStyle.UNDECORATED);
+                     stage.setScene(new Scene(parent));
+                     stage.show();
+                 }
+                 catch (IOException e){
+                     Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+                 }
+            }
+
 //
 //    public void displayDashborad(ActionEvent event) {
 //        Panel.setOpacity(100);

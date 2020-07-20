@@ -5,22 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="968.0" style="-fx-background-color: none;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Login_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="737.0" style="-fx-background-color: none;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Login_Controller">
          <children>
-            <AnchorPane fx:id="login_page" prefHeight="370.0" prefWidth="604.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="100.0">
+            <AnchorPane fx:id="login_page" prefHeight="385.0" prefWidth="604.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox prefHeight="465.0" prefWidth="737.0" AnchorPane.bottomAnchor="-80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-133.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane prefHeight="373.0" prefWidth="604.0">
+                        <Pane prefHeight="464.0" prefWidth="719.0">
                            <children>
-                              <Label layoutX="337.0" layoutY="49.0" text="Username" />
-                              <Label layoutX="79.0" layoutY="86.0" text="LOgin" />
-                              <TextField fx:id="username" layoutX="337.0" layoutY="82.0" />
-                              <Label layoutX="337.0" layoutY="151.0" text="password" />
-                              <PasswordField fx:id="password" layoutX="337.0" layoutY="174.0" />
-                              <Button fx:id="login_button" layoutX="385.0" layoutY="279.0" mnemonicParsing="false" onAction="#submitbutton" text="Button" />
-                              <Button layoutX="486.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimize" text="-" />
-                              <Button layoutX="525.0" layoutY="14.0" mnemonicParsing="false" onAction="#CloseApp" text="x" />
+                              <Label layoutX="456.0" layoutY="86.0" text="Username" />
+                              <Label layoutX="79.0" layoutY="86.0" prefHeight="82.0" prefWidth="182.0" text="LOGIN">
+                           <font>
+                              <Font size="58.0" />
+                           </font></Label>
+                              <TextField fx:id="username" layoutX="458.0" layoutY="139.0" />
+                              <Label layoutX="458.0" layoutY="187.0" text="password" />
+                              <PasswordField fx:id="password" layoutX="458.0" layoutY="220.0" />
+                              <Button fx:id="login_button" layoutX="458.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitbutton" text="Button" />
+                              <Button layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimize" text="-" />
+                              <Button layoutX="687.0" layoutY="14.0" mnemonicParsing="false" onAction="#CloseApp" text="x" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -28,15 +31,6 @@
                         </Pane>
                      </children>
                   </VBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="Panel" disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="615.0" prefWidth="847.0">
-               <children>
-                  <Label layoutX="86.0" layoutY="93.0" prefHeight="253.0" prefWidth="424.0" text="JAFFFAR HERE">
-                     <font>
-                        <Font size="66.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
 

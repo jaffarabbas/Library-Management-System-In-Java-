@@ -16,14 +16,7 @@ public class Library extends Application {
     public void start(Stage primaryStage) throws Exception{
         AnchorPane root = FXMLLoader.load(getClass().getResource("FXML/Login_page.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        //for getting the screen size
         Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        primaryStage.setX(bounds.getMinX());
-        primaryStage.setY(bounds.getMinY());
-        primaryStage.setWidth(bounds.getWidth()-100);
-        primaryStage.setHeight(bounds.getHeight()-100);
-
         Scene scene = new  Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
