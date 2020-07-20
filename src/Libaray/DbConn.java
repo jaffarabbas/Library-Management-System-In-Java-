@@ -13,13 +13,6 @@ public class DbConn implements MainConnection {
     public Statement statement;
     public ResultSet result;
 
-
-    @Override
-    public void Connection() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root","");
-
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
