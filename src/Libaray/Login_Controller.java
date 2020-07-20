@@ -33,6 +33,8 @@ public class Login_Controller {
 
     public AnchorPane Panel;
     public AnchorPane login_page;
+    public AnchorPane pannel_check;
+    public Button login_button;
 
 
     //minimizw
@@ -49,7 +51,7 @@ public class Login_Controller {
     public void submitbutton(ActionEvent event) throws SQLException, IOException,Exception {
 
 
-        Window owner = submitbutton.getScene().getWindow();
+        Window owner = login_button.getScene().getWindow();
 
         if(username.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
@@ -60,41 +62,25 @@ public class Login_Controller {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
                     "Please enter your Password");
             return;
-
+        }
 
                 String user = username.getText();
                 String passwords = password.getText();
 
                 DbConn jdb = new DbConn();
-                boolean flag = jdb.validate(user, password);
-
-
-
+                boolean flag = jdb.validate(user, passwords);
 
                 if(!flag) {
                     infoBox("Please enter correct Email and Password", null, "Failed");
                 }else {
                     infoBox("Login Successful!", null, "Failed");
 
-                    Student_plane.setOpacity(100);
-                    Student_plane.setDisable(false);
-                    Login_plane.setOpacity(0);
-                    Login_plane.setDisable(true);
-                    UCategoryAxis.setText(jdbcDao.getUserId());
-                    Chart();
-
-
+                    pannel_check.setOpacity(100);
+                    pannel_check.setDisable(false);
+                    login_page.setOpacity(0);
+                    login_page.setDisable(true);
                 }
             }
-
-
-            Panel.setOpacity(100);
-            Panel.setDisable(false);
-            login_page.setOpacity(0);
-            login_page.setDisable(true);
-        }
-    }
-
 //
 //    public void displayDashborad(ActionEvent event) {
 //        Panel.setOpacity(100);

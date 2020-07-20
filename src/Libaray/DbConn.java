@@ -15,11 +15,11 @@ public class DbConn{
 
 
 
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/login?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost/Library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
-    private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE user = ? and password = ?";
+    private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
 
 
     public static String UserId;
@@ -34,18 +34,18 @@ public class DbConn{
         }
     }
 
-    public boolean validate(String emailId, String password) throws SQLException {
+    public boolean validate(String user, String password) throws SQLException {
 
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (// Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY_LOGIN)) {
-            preparedStatement.setString(1, emailId);
+            preparedStatement.setString(1, user);
             preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                UserId = emailId;
+                UserId = user;
                 return true;
             }
 
