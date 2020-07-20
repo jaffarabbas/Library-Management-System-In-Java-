@@ -35,11 +35,6 @@ public class Login_Controller {
     public AnchorPane login_page;
 
 
-    public TextField username;
-    public PasswordField password;
-    public Button login_button;
-
-
     //minimizw
     public void minimize(ActionEvent actionEvent) {
         Stage stage = (Stage)((Button) actionEvent.getSource()).getScene().getWindow();
@@ -51,65 +46,46 @@ public class Login_Controller {
     }
 
 
-    public void login(ActionEvent event) throws SQLException, IOException,Exception {
+    public void submitbutton(ActionEvent event) throws SQLException, IOException,Exception {
 
 
         Window owner = submitbutton.getScene().getWindow();
 
         if(username.getText().isEmpty()) {
-            showAlert(AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your email id");
-            return;
-        }
-        if(passwordField.getText().isEmpty()) {
-            showAlert(AlertType.ERROR, owner, "Form Error!",
-
-    public void submitbutton(ActionEvent event) throws SQLException, IOException,Exception {
-
-
-        Window owner = login_button.getScene().getWindow();
-
-        if(username.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your email id");
+                    "Please enter your Username");
             return;
         }
         if(password.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-
-                    "Please enter a password");
+                    "Please enter your Password");
             return;
-        }
 
 
-        String emailId = .getText();
-        String password = passwordField.getText();
+                String user = username.getText();
+                String passwords = password.getText();
 
-        jdbcDao jdb = new jdbcDao();
-        boolean flag = jdb.validate(emailId, password);
-
-        String user = username.getText();
-        String passwords = password.getText();
-
-        DbConn jdb = new DbConn();
-        boolean flag = jdb.validate(user, passwords);
+                DbConn jdb = new DbConn();
+                boolean flag = jdb.validate(user, password);
 
 
-        if(!flag) {
-            infoBox("Please enter correct Email and Password", null, "Failed");
-        }else {
-            infoBox("Login Successful!", null, "Failed");
-
-            Student_plane.setOpacity(100);
-            Student_plane.setDisable(false);
-            Login_plane.setOpacity(0);
-            Login_plane.setDisable(true);
-            UCategoryAxis.setText(jdbcDao.getUserId());
-            Chart();
 
 
-        }
-    }
+                if(!flag) {
+                    infoBox("Please enter correct Email and Password", null, "Failed");
+                }else {
+                    infoBox("Login Successful!", null, "Failed");
+
+                    Student_plane.setOpacity(100);
+                    Student_plane.setDisable(false);
+                    Login_plane.setOpacity(0);
+                    Login_plane.setDisable(true);
+                    UCategoryAxis.setText(jdbcDao.getUserId());
+                    Chart();
+
+
+                }
+            }
 
 
             Panel.setOpacity(100);
