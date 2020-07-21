@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<AnchorPane fx:id="pannel_check" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Pannel_librarian_Controller">
+<AnchorPane fx:id="pannel_check" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Pannel_librarian_Controller">
    <children>
       <Pane layoutX="25.0" layoutY="14.0" prefHeight="629.0" prefWidth="943.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="163.0" layoutY="214.0" prefHeight="113.0" prefWidth="244.0" text="jaffar">
-               <font>
-                  <Font size="96.0" />
-               </font>
-            </Label>
+            <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="629.0" prefWidth="233.0">
+               <children>
+                  <Pane prefHeight="633.0" prefWidth="233.0">
+                     <children>
+                        <Button fx:id="dashbored" layoutY="85.0" mnemonicParsing="false" onAction="#DASHBORED_METHOD" prefHeight="58.0" prefWidth="233.0" text="DACHBORED" />
+                        <Button fx:id="book_insertion" layoutY="143.0" mnemonicParsing="false" onAction="#BOOK_INSERTION_METHOD" prefHeight="58.0" prefWidth="233.0" text="INSERT BOOK" />
+                        <Button fx:id="regester" layoutY="201.0" mnemonicParsing="false" onAction="#REGESTER_METHOD" prefHeight="58.0" prefWidth="233.0" text="REGESTER" />
+                        <Button fx:id="Member_list" layoutY="317.0" mnemonicParsing="false" onAction="#MEMBER_LIST_METHOD" prefHeight="58.0" prefWidth="233.0" text="MEMBER LIST" />
+                        <Button fx:id="Book_list" layoutY="375.0" mnemonicParsing="false" onAction="#BOOK_LIST_METHOD" prefHeight="58.0" prefWidth="233.0" text="BOOK LIST" />
+                        <Button fx:id="take_away" layoutY="433.0" mnemonicParsing="false" onAction="#TAKE_AWAY_METHOD" prefHeight="58.0" prefWidth="233.0" text="TAKE AWAY" />
+                        <Button fx:id="newMember" layoutY="259.0" mnemonicParsing="false" onAction="#NEW_MEMBER_METHOD" prefHeight="58.0" prefWidth="233.0" text="NEW MEMBER" />
+                        <Button fx:id="Resubmit" layoutY="491.0" mnemonicParsing="false" onAction="#RESUBMIT_METHOD" prefHeight="58.0" prefWidth="233.0" text="RESUBMUT" />
+                        <Button fx:id="Desfaulter" layoutY="549.0" mnemonicParsing="false" onAction="#DEFAULTER_METHOD" prefHeight="58.0" prefWidth="233.0" text="DEFAULTER" />
+                        <Separator layoutX="240.0" orientation="VERTICAL" prefHeight="629.0" prefWidth="0.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
          </children>
       </Pane>
    </children>

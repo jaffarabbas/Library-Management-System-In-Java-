@@ -92,9 +92,11 @@ public class Login_Controller {
             public  void  closeStage(){
                 ((Stage)username.getScene().getWindow()).close();
             }
+
+            //load the main pannel
             public void LoadMain(){
                  try{
-                     Parent parent = FXMLLoader.load(getClass().getResource("FXML/Pannel.fxml"));
+                     Parent parent = FXMLLoader.load(getClass().getResource("FXML/Book_Insertion.fxml"));
                      Stage stage = new Stage(StageStyle.UNDECORATED);
                      stage.setScene(new Scene(parent));
                      stage.show();
@@ -103,14 +105,6 @@ public class Login_Controller {
                      Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
                  }
             }
-
-//
-//    public void displayDashborad(ActionEvent event) {
-//        Panel.setOpacity(100);
-//        Panel.setDisable(false);
-//        login_page.setOpacity(0);
-//        login_page.setDisable(true);
-//    }
 
     private static void infoBox(String infoMessage, String headerText, String title){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
