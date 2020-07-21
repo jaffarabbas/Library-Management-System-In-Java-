@@ -4,6 +4,7 @@ import Libaray.DbConnection.MainConnection;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,9 +60,18 @@ public class DbConn{
 
     //Books inserteion Metthod
 
-    public void insert_Books_query_Executer(){
+    public void insert_Books_query_Executer(String sno, String name, String isbn, String author, LocalDate date) throws SQLException {
         try {
-            statement.executeQuery(INSERT_QUERY_BOOK);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_BOOK) ;
+            preparedStatement.setString(1, sno);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, isbn);
+            preparedStatement.setString(4, author);
+            preparedStatement.setString(5, String.valueOf(date));
+    
+            System.out.println(preparedStatement);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }

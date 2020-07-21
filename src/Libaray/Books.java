@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class Books {
     public TextField Author;
     public DatePicker insertionDate;
 
-    public void BookInserted(ActionEvent actionEvent) {
+    public void BookInserted(ActionEvent actionEvent) throws SQLException {
         Window owner = BookInterd.getScene().getWindow();
 
         if(Sno.getText().isEmpty()) {
@@ -57,7 +58,7 @@ public class Books {
 
         DbConn connect = new DbConn();
 
-        connect.insert_Books_query_Executer();
+        connect.insert_Books_query_Executer(sno,name,Isbn,author,insertion_date);
 
     }
 
