@@ -16,10 +16,10 @@ public class DbConn{
 
 
     private static final String DATABASE_URL = "jdbc:mysql://localhost/Library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
+    private static final String INSERT_QUERY = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?, ?)";
 
 
     public static String UserId;
@@ -55,6 +55,11 @@ public class DbConn{
         }
         return false;
     }
+
+
+    //Books inserteion Metthod
+
+
 
 
     //print the error
