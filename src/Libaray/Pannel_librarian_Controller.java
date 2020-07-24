@@ -1,8 +1,17 @@
 package Libaray;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Pannel_librarian_Controller {
 
@@ -21,6 +30,15 @@ public class Pannel_librarian_Controller {
     }
 
     public void BOOK_INSERTION_METHOD(ActionEvent actionEvent) {
+        try{
+            Parent parent = FXMLLoader.load(getClass().getResource("FXML/Book_Insertion.fxml"));
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(parent));
+            stage.show();
+        }
+        catch (IOException e){
+            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void REGESTER_METHOD(ActionEvent actionEvent) {

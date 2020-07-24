@@ -96,7 +96,7 @@ public class Login_Controller {
             //load the main pannel
             public void LoadMain(){
                  try{
-                     Parent parent = FXMLLoader.load(getClass().getResource("FXML/Book_Insertion.fxml"));
+                     Parent parent = FXMLLoader.load(getClass().getResource("FXML/Pannel.fxml"));
                      Stage stage = new Stage(StageStyle.UNDECORATED);
                      stage.setScene(new Scene(parent));
                      stage.show();
