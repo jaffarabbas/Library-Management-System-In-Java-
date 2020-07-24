@@ -25,20 +25,19 @@ public class Pannel_librarian_Controller {
     public Button Resubmit;
     public Button Desfaulter;
     public AnchorPane pannel_check;
+    public AnchorPane rootpane;
 
     public void DASHBORED_METHOD(ActionEvent actionEvent) {
     }
 
     public void BOOK_INSERTION_METHOD(ActionEvent actionEvent) {
-        try{
-            Parent parent = FXMLLoader.load(getClass().getResource("FXML/Book_Insertion.fxml"));
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.setScene(new Scene(parent));
-            stage.show();
-        }
-        catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
-        }
+            try{
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Book_Insertion.fxml"));
+                rootpane.getChildren().setAll(pane);
+            }
+            catch (IOException e){
+                Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            }
     }
 
     public void REGESTER_METHOD(ActionEvent actionEvent) {
@@ -60,5 +59,14 @@ public class Pannel_librarian_Controller {
     }
 
     public void DEFAULTER_METHOD(ActionEvent actionEvent) {
+    }
+
+    public void minimize(ActionEvent actionEvent) {
+        Stage stage = (Stage)((Button) actionEvent.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    public void CloseApp(ActionEvent actionEvent) {
+        System.exit(1);
     }
 }
