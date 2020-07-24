@@ -78,12 +78,6 @@ public class Login_Controller {
                     infoBox("Please enter correct Email and Password", null, "Failed");
                 }else {
                     infoBox("Login Successful!", null, "Failed");
-
-//                    pannel_check.setOpacity(100);
-//                    pannel_check.setDisable(false);
-//                    login_page.setOpacity(0);
-//                    login_page.setDisable(true);
-
                     closeStage();
                     LoadMain();
                 }

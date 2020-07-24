@@ -60,7 +60,7 @@ public class DbConn{
 
     //Books inserteion Metthod
 
-    public void insert_Books_query_Executer(String sno, String name, String isbn, String author, LocalDate date) throws SQLException {
+    public int insert_Books_query_Executer(String sno, String name, String isbn, String author, LocalDate date) throws SQLException {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_BOOK) ;
             preparedStatement.setString(1, sno);
@@ -70,11 +70,12 @@ public class DbConn{
             preparedStatement.setString(5, String.valueOf(date));
     
             System.out.println(preparedStatement);
-
-            preparedStatement.executeUpdate();
+              int resultSet =  preparedStatement.executeUpdate();
+              return 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     //print the error

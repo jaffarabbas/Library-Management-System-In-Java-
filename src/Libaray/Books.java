@@ -58,7 +58,13 @@ public class Books {
 
         DbConn connect = new DbConn();
 
-        connect.insert_Books_query_Executer(sno,name,Isbn,author,insertion_date);
+        int flag = connect.insert_Books_query_Executer(sno,name,Isbn,author,insertion_date);
+        if(flag == 1){
+            infoBox("Login Successful!", null, "Failed");
+        }
+        else{
+            infoBox("Please enter correct Email and Password", null, "Failed");
+        }
 
     }
 
@@ -70,5 +76,12 @@ public class Books {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+    private static void infoBox(String infoMessage, String headerText, String title){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(infoMessage);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.showAndWait();
     }
 }
