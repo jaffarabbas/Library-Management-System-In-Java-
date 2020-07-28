@@ -1,10 +1,17 @@
 package Libaray;
 
 import Libaray.DbConnection.MainConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
+
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +28,7 @@ public class DbConn{
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
     private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
+
 
 
     public static String UserId;
@@ -77,6 +85,21 @@ public class DbConn{
         }
         return 0;
     }
+
+    public ResultSet execQuery(String query){
+                try{
+                    statement = connection.createStatement();
+                    result = statement.executeQuery(query);
+                }
+                catch(SQLException e){
+                    printSQLException(e);
+                    return null;
+                }
+                finally {
+                }
+                return result;
+    }
+
 
     //print the error
     public static void printSQLException(SQLException ex) {

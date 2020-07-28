@@ -96,7 +96,7 @@ public class Login_Controller {
                      stage.show();
                  }
                  catch (IOException e){
-                     Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+
                  }
             }
 

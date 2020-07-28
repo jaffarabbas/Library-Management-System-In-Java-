@@ -28,7 +28,7 @@
                   </Pane>
                </children>
             </VBox>
-            <AnchorPane fx:id="rootpane" layoutX="263.0" layoutY="78.0" prefHeight="462.0" prefWidth="637.0" />
+            <AnchorPane fx:id="rootpane" layoutX="263.0" layoutY="82.0" prefHeight="522.0" prefWidth="666.0" />
             <Button layoutX="826.0" layoutY="26.0" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="27.0" text="-" />
             <Button layoutX="860.0" layoutY="26.0" mnemonicParsing="false" onAction="#CloseApp" prefHeight="25.0" prefWidth="27.0" text="x" />
          </children>
