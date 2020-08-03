@@ -28,6 +28,13 @@ public class Pannel_librarian_Controller {
     public AnchorPane rootpane;
 
     public void DASHBORED_METHOD(ActionEvent actionEvent) {
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/dashboard.fxml"));
+            rootpane.getChildren().setAll(pane);
+        }
+        catch (IOException e){
+            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void BOOK_INSERTION_METHOD(ActionEvent actionEvent) {
