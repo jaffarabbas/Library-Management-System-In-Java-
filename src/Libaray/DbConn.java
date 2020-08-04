@@ -28,7 +28,7 @@ public class DbConn{
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
     private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
-
+    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (`id`, `name`, `number`, `address`, `card_number`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
 
 
     public static String UserId;
@@ -85,6 +85,26 @@ public class DbConn{
         }
         return 0;
     }
+
+    //Member insertion
+    public int insert_Member_query_Executer(String name, String number, String address, String cardNumber, LocalDate date) throws SQLException {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_MEMBER) ;
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, number);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, cardNumber);
+            preparedStatement.setString(5, String.valueOf(date));
+
+            System.out.println(preparedStatement);
+            int resultSet =  preparedStatement.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
     public ResultSet execQuery(String query){
                 try{

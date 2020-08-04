@@ -52,6 +52,13 @@ public class Pannel_librarian_Controller {
     }
 
     public void MEMBER_LIST_METHOD(ActionEvent actionEvent) {
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Member_list.fxml"));
+            rootpane.getChildren().setAll(pane);
+        }
+        catch (IOException e){
+            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void BOOK_LIST_METHOD(ActionEvent actionEvent) {
