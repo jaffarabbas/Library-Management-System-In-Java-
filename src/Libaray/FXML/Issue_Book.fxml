@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Issue_Book">
+   <children>
+      <Pane fx:id="Pane_Main" layoutX="24.0" layoutY="84.0" prefHeight="149.0" prefWidth="594.0">
+         <children>
+            <Label layoutX="47.0" layoutY="24.0" text="BOOK SNO">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="47.0" layoutY="75.0" onAction="#Loadbook" prefHeight="30.0" prefWidth="205.0" />
+            <Text fx:id="bookName" layoutX="380.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Name" wrappingWidth="119.6728515625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="AutherName" layoutX="380.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auther" wrappingWidth="87.6728515625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="Availiblity_Of_book" layoutX="381.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availiblity">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="24.0" layoutY="253.0" prefHeight="149.0" prefWidth="594.0">
+         <children>
+            <Label layoutX="43.0" layoutY="24.0" text="MEMBER SNO">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="43.0" layoutY="75.0" onAction="#LoadMember" prefHeight="30.0" prefWidth="205.0" />
+            <Text fx:id="Member_Name" layoutX="390.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member Name" wrappingWidth="142.6728515625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="Member_Number" layoutX="390.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number" wrappingWidth="87.6728515625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Label layoutX="206.0" layoutY="14.0" prefHeight="54.0" prefWidth="205.0" text="ISSUE BOOK" textAlignment="CENTER">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <Button fx:id="IssueBook_id" layoutX="24.0" layoutY="417.0" mnemonicParsing="false" onAction="#IssueBook" prefHeight="45.0" prefWidth="594.0" text="ISSUE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
