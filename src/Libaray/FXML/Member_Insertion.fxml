@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Library.Member">
+   <children>
+      <Pane fx:id="" layoutX="77.0" layoutY="7.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField fx:id="name_member" layoutX="34.0" layoutY="69.0" prefHeight="41.0" prefWidth="533.0" promptText="Name">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <TextField fx:id="" layoutX="34.0" layoutY="133.0" prefHeight="41.0" prefWidth="533.0" promptText="Name">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="" layoutX="34.0" layoutY="193.0" prefHeight="41.0" prefWidth="533.0" promptText="ISBN">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="" layoutX="34.0" layoutY="255.0" prefHeight="41.0" prefWidth="533.0" promptText="Author">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <Button fx:id="" layoutX="34.0" layoutY="374.0" mnemonicParsing="false" onAction="#BookInserted" prefHeight="41.0" prefWidth="533.0" text="INSERT" />
+            <Label layoutX="170.0" prefHeight="67.0" prefWidth="260.0" text="ADD MEMBER">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="" layoutX="34.0" layoutY="315.0" prefHeight="41.0" prefWidth="533.0" promptText="Date of Insertion" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
