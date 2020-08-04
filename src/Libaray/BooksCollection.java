@@ -71,22 +71,22 @@ import java.util.logging.Logger;
 ////    }
 //
 //
-   public static class Book{
-        private final SimpleStringProperty sno;
-        private final SimpleStringProperty name;
-        private final SimpleStringProperty isbn;
-        private final SimpleStringProperty auther;
-        private final SimpleStringProperty indate;
-        private final SimpleBooleanProperty availiblity;
+   // public static class Book{
+   //      private final SimpleStringProperty sno;
+        // private final SimpleStringProperty name;
+        // private final SimpleStringProperty isbn;
+        // private final SimpleStringProperty auther;
+        // private final SimpleStringProperty indate;
+        // private final SimpleBooleanProperty availiblity;
 
-        public Book(String sno , String name , String isbn , String auther ,  String insertedDate , Boolean Availiblity ){
-            this.sno = new SimpleStringProperty(sno);
-            this.name = new SimpleStringProperty(name);
-            this.isbn = new SimpleStringProperty(isbn);
-            this.auther = new SimpleStringProperty(auther);
-            this.indate = new SimpleStringProperty(insertedDate);
-            this.availiblity = new SimpleBooleanProperty(Availiblity);
-        }
+        // public Book(String sno , String name , String isbn , String auther ,  String insertedDate , Boolean Availiblity ){
+        //     this.sno = new SimpleStringProperty(sno);
+        //     this.name = new SimpleStringProperty(name);
+        //     this.isbn = new SimpleStringProperty(isbn);
+        //     this.auther = new SimpleStringProperty(auther);
+        //     this.indate = new SimpleStringProperty(insertedDate);
+        //     this.availiblity = new SimpleBooleanProperty(Availiblity);
+        // }
 //
 //        public String getSno(){
 //            return sno.get();
@@ -120,31 +120,121 @@ import java.util.logging.Logger;
 
 public class BooksCollection implements Initializable{
 
-    public javafx.scene.control.TableView TableView;
-    public TableColumn colSno;
-    public TableColumn colName;
-    public TableColumn colISBN;
-    public TableColumn colAuther;
-    public TableColumn colDate;
-    public TableColumn colAvailiblity;
-    public AnchorPane rootPane;
+     ObservableList<Book> list = FXCollections.observableArrayList();
+   public AnchorPane rootPane;
+   public javafx.scene.control.TableView<Book>TableView;
+   public TableColumn<Book,String>colSno;
+   public TableColumn<Book,String> colName;
+   public TableColumn<Book,String> colISBN;
+   public TableColumn<Book,String>colAuther;
+   public TableColumn<Book,String>colDate;
+   public TableColumn<Book,Boolean> colAvailiblity;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        TableColumn sno = new TableColumn("sno");
-        TableColumn Name = new TableColumn("name");
-        TableColumn Isbn = new TableColumn("isbn");
-        TableColumn Auther = new TableColumn("auther");
-        TableColumn InsertDate = new TableColumn("insertiondate");
-        TableColumn Availiblity = new TableColumn("availiblity");
-    }
+   @Override
+   public void initialize(URL url, ResourceBundle resourceBundle) {
+       ValueinSertion();
+       loadData();
+   }
+
+   private void ValueinSertion(){
+       colSno.setCellValueFactory(new PropertyValueFactory<>("sno"));
+       colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+       colISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+       colAuther.setCellValueFactory(new PropertyValueFactory<>("author"));
+       colDate.setCellValueFactory(new PropertyValueFactory<Book,String>("indate"));
+       colAvailiblity.setCellValueFactory(new PropertyValueFactory<>("availiblity"));
+   }
+
+
+ private void loadData(){
+       DbConn connect = new DbConn();
+       String SELECT_BOOK_QUERY = "select * from book_collection";
+     //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
+       ResultSet resultSet = connect.execQuery(SELECT_BOOK_QUERY);
+      try {
+          while (resultSet.next()) {
+              String Sno = resultSet.getString("sno");
+              String Name = resultSet.getString("name");
+              String Isbn = resultSet.getString("isbn");
+              String Auther = resultSet.getString("auther");
+              String Dates =resultSet.getString("insertion_date");
+              Boolean Avail = resultSet.getBoolean("availiblity");
+              list.add(new Book(Sno, Name, Isbn, Auther,Dates, Avail));
+          }
+      }catch (SQLException e){
+          Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+      }
+       TableView.getItems().setAll(list);
+
+   }
+
+
+
+public static class Book{
+        private final SimpleStringProperty sno;
+        private final SimpleStringProperty name;
+        private final SimpleStringProperty isbn;
+        private final SimpleStringProperty auther;
+        private final SimpleStringProperty insertdate;
+        private final SimpleBooleanProperty availiblity;
+
+        public Book(String sno , String name , String isbn , String auther ,  String insertedDate , Boolean Availiblity ){
+            this.sno = new SimpleStringProperty(sno);
+            this.name = new SimpleStringProperty(name);
+            this.isbn = new SimpleStringProperty(isbn);
+            this.auther = new SimpleStringProperty(auther);
+            this.insertdate = new SimpleStringProperty(insertedDate);
+            this.availiblity = new SimpleBooleanProperty(Availiblity);
+        }
+
+         public String getSno(){
+           return sno.get();
+         }
+       public String getName(){
+           return name.get();
+         }
+       public String getIsbn(){
+           return isbn.get();
+         }
+       public String getAuthor(){
+           return auther.get();
+         }
+       public String getDate(){
+          return insertdate.getValue();
+         }
+       public Boolean getAviliblity(){
+           return availiblity.get();
+         }
+
+         public void setSno(String sno){
+            this.sno.set(sno);
+         }
+           public void setName(String name){
+            this.name.set(name);
+         }
+           public void seIsbn(String isbn){
+            this.isbn.set(isbn);
+         }
+           public void setAuther(String auther){
+            this.auther.set(auther);
+         }
+           public void setInsertionDate(String insertDate){
+            this.insertdate.set(insertDate);
+         }
+           public void setAvailiblity(Boolean Availiblity){
+            this.availiblity.set(Availiblity);
+         }
+
+           public SimpleStringProperty indateProperty() {
+           return insertdate;
+         }
+
+         public SimpleBooleanProperty availiblityProperty() {
+           return availiblity;
+        }
 }
 
 
 
 
-
-
-
-
-
+}
