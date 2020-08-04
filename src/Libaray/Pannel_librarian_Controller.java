@@ -48,6 +48,7 @@ public class Pannel_librarian_Controller {
     }
 
     public void REGESTER_METHOD(ActionEvent actionEvent) {
+
     }
 
     public void MEMBER_LIST_METHOD(ActionEvent actionEvent) {
@@ -67,6 +68,13 @@ public class Pannel_librarian_Controller {
     }
 
     public void NEW_MEMBER_METHOD(ActionEvent actionEvent) {
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Member_Insertion.fxml"));
+            rootpane.getChildren().setAll(pane);
+        }
+        catch (IOException e){
+            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void RESUBMIT_METHOD(ActionEvent actionEvent) {
