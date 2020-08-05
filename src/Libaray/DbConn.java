@@ -20,6 +20,7 @@ public class DbConn{
     public Connection connection;
     public Statement statement;
     public ResultSet result;
+    public static DbConn handler = null;
 
 
 
@@ -118,6 +119,15 @@ public class DbConn{
                 finally {
                 }
                 return result;
+    }
+
+    //get Instance
+
+    public static DbConn getInstance(){
+        if(handler == null){
+            handler = new DbConn();
+        }
+        return handler;
     }
 
 

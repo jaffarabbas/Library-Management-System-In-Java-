@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Issue_Book">
    <children>
       <Pane fx:id="Pane_Main" layoutX="24.0" layoutY="84.0" prefHeight="149.0" prefWidth="594.0">
@@ -18,18 +17,18 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="47.0" layoutY="75.0" onAction="#Loadbook" prefHeight="30.0" prefWidth="205.0" />
-            <Text fx:id="bookName" layoutX="380.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Name" wrappingWidth="119.6728515625">
+            <TextField fx:id="BookIdTaker" layoutX="47.0" layoutY="75.0" onAction="#Loadbook" prefHeight="30.0" prefWidth="205.0" />
+            <Text fx:id="bookName" layoutX="297.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Name" wrappingWidth="294.6728515625">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="AutherName" layoutX="380.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auther" wrappingWidth="87.6728515625">
+            <Text fx:id="AutherName" layoutX="297.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auther" wrappingWidth="294.6728515625">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="Availiblity_Of_book" layoutX="381.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availiblity">
+            <Text fx:id="Availiblity_Of_book" layoutX="297.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Availiblity" wrappingWidth="294.6728515625">
                <font>
                   <Font size="20.0" />
                </font>
@@ -43,13 +42,18 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="43.0" layoutY="75.0" onAction="#LoadMember" prefHeight="30.0" prefWidth="205.0" />
-            <Text fx:id="Member_Name" layoutX="390.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member Name" wrappingWidth="142.6728515625">
+            <TextField fx:id="MemberIdTaker" layoutX="43.0" layoutY="75.0" onAction="#LoadMember" prefHeight="30.0" prefWidth="205.0" />
+            <Text fx:id="Member_Name" layoutX="297.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member Name" wrappingWidth="245.6728515625">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="Member_Number" layoutX="390.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number" wrappingWidth="87.6728515625">
+            <Text fx:id="Member_Number" layoutX="297.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number" wrappingWidth="294.6728515625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="Member_Card_Number" layoutX="297.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number" wrappingWidth="294.6728515625">
                <font>
                   <Font size="20.0" />
                </font>
