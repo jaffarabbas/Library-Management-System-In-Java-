@@ -5,5 +5,15 @@ BOOK:
     isbn
     auther
     insertion date
+Issued_Books:
+    Id
+    BookSno
+    Book_Name
+    Isbn
+    Member_name
+    MeberCard_number
+    Member_number
+    Issue_date_of_Book
+    Expire_date_book
 
 
