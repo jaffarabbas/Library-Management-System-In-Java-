@@ -45,7 +45,6 @@ public class DbConn{
     }
 
     public boolean validate(String user, String password) throws SQLException {
-
         // Step 1: Establishing a Connection and
         // try-with-resource statement will auto close the connection.
         try (// Step 2:Create a statement using connection object
