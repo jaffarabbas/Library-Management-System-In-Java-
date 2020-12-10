@@ -60,7 +60,7 @@ public class Books {
 
         int flag = connect.insert_Books_query_Executer(sno,name,Isbn,author,insertion_date);
         if(flag == 1){
-            infoBox("Book Enter Successful!", null, "Failed");
+            infoBox("Book Enter Successful!", null, "Successful");
         }
         else{
             infoBox("Falied!!!", null, "Failed");

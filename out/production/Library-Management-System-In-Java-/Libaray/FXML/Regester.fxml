@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.BooksCollection">
+   <children>
+      <TableView fx:id="TableView" layoutX="157.0" layoutY="35.0" prefHeight="457.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="colSno" maxWidth="3000.0" minWidth="5.0" prefWidth="61.0" text="S.NO" />
+            <TableColumn fx:id="colName" maxWidth="4000.0" prefWidth="113.0" text="BSNO" />
+            <TableColumn fx:id="colISBN" maxWidth="6000.0" prefWidth="142.0" text="BNAME" />
+            <TableColumn fx:id="colAuther" prefWidth="57.0" text="ISBN" />
+            <TableColumn fx:id="colDate" maxWidth="4000.0" prefWidth="68.0" text="MNAME" />
+            <TableColumn fx:id="colAvailiblity" maxWidth="3500.0" prefWidth="75.0" text="MCARD" />
+            <TableColumn fx:id="colAvailiblity1" maxWidth="3500.0" prefWidth="75.0" text="ISDATE" />
+            <TableColumn fx:id="colAvailiblity2" maxWidth="3500.0" prefWidth="75.0" text="EXDATE" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

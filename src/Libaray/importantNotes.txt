@@ -11,9 +11,8 @@ Issued_Books:
     Book_Name
     Isbn
     Member_name
-    MeberCard_number
+    MemberCard_number
     Member_number
     Issue_date_of_Book
     Expire_date_book
-
 

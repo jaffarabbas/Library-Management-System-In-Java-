@@ -62,10 +62,10 @@ public class Member {
 
         int flag = connect.insert_Member_query_Executer(name,number,address,card_number,insertion_date);
         if(flag == 1){
-            infoBox("Login Successful!", null, "Failed");
+            infoBox("Memeber add Successful!", null, "Failed");
         }
         else{
-            infoBox("Please enter correct Email and Password", null, "Failed");
+            infoBox("Failed!!", null, "Failed");
         }
 
     }
