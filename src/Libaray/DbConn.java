@@ -29,7 +29,7 @@ public class DbConn{
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
     private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
-    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (`id`, `name`, `number`, `address`, `card_number`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
+    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (`id`, `name`, `number`, `address`, `card_number`, `insertion_date`) VALUES (?,?,?, ?, ?, ?)";
 
 
     public static String UserId;
@@ -107,17 +107,30 @@ public class DbConn{
 
 
     public ResultSet execQuery(String query){
-                try{
-                    statement = connection.createStatement();
-                    result = statement.executeQuery(query);
-                }
-                catch(SQLException e){
-                    printSQLException(e);
-                    return null;
-                }
-                finally {
-                }
-                return result;
+        try{
+            statement = connection.createStatement();
+            result = statement.executeQuery(query);
+        }
+         catch(SQLException e){
+         printSQLException(e);
+         return null;
+        }
+        finally { }
+          return result;
+    }
+
+    public boolean execAction(String query){
+        ResultSet resultSet;
+        try{
+            statement = connection.createStatement();
+            statement.execute(query);
+            return true;
+        }catch (SQLException exception){
+            printSQLException(exception);
+            System.out.println("Error Message Of DataBase Connection Class : "+exception.getLocalizedMessage());
+            return false;
+        }finally {
+        }
     }
 
     //get Instance

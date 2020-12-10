@@ -16,3 +16,12 @@ Issued_Books:
     Issue_date_of_Book
     Expire_date_book
 
+
+CREATE TABLE Issued_Books (
+ bookId varchar(200) PRIMARY KEY,
+ memberId varchar(200),
+ issueTime timestamp DEFAULT CURRENT_TIMESTAMP,
+ renew_count integer DEFAULT 0,
+ FOREIGN KEY (bookID) REFERENCES book_collection(sno),
+ FOREIGN KEY (memberId) REFERENCES member_collection(card_number)
+ )

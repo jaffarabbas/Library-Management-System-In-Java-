@@ -17,7 +17,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="BookIdTaker" layoutX="47.0" layoutY="75.0" onAction="#Loadbook" prefHeight="30.0" prefWidth="205.0" />
+            <TextField fx:id="BookIdTaker" layoutX="47.0" layoutY="75.0" onAction="#LoadBook" prefHeight="30.0" prefWidth="205.0" />
             <Text fx:id="bookName" layoutX="297.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Name" wrappingWidth="294.6728515625">
                <font>
                   <Font size="20.0" />

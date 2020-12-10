@@ -92,6 +92,13 @@ public class Pannel_librarian_Controller {
     }
 
     public void RESUBMIT_METHOD(ActionEvent actionEvent) {
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Reniew_book.fxml"));
+            rootpane.getChildren().setAll(pane);
+        }
+        catch (IOException e){
+            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void DEFAULTER_METHOD(ActionEvent actionEvent) {
