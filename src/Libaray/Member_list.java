@@ -125,8 +125,6 @@ public class Member_list implements Initializable {
     }
 
     //Advance Search
-
-
     private void Advancesearch(){
         // Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<Members> filteredData = new FilteredList<>(list, b -> true);

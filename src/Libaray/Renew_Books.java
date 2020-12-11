@@ -75,6 +75,6 @@ public class Renew_Books implements Initializable {
         BooksDetials.getItems().setAll(issuedData);
     }
 
-    public void Reniew_Issued_Books(ActionEvent actionEvent) {
+    public void Renew_Issued_Books(ActionEvent actionEvent) {
     }
 }
