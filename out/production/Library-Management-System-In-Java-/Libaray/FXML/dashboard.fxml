@@ -1,18 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.dashboard">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="626.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.dashboard">
    <children>
-      <Pane layoutX="-34.0" layoutY="-55.0" prefHeight="128.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="7.0" layoutY="12.0" prefHeight="487.0" prefWidth="619.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="26.0" layoutY="22.0" prefHeight="17.0" prefWidth="70.0" text="Total Books" />
-            <TextFlow layoutX="110.0" layoutY="39.0" prefHeight="81.0" prefWidth="100.0" fx:id="textshow" />
+            <Pane layoutX="209.0" layoutY="102.0" prefHeight="54.0" prefWidth="197.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+               <children>
+                  <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEMBERS :" wrappingWidth="126.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="MemberCount" layoutX="147.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="424.0" layoutY="102.0" prefHeight="54.0" prefWidth="178.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+               <children>
+                  <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISSUED :" wrappingWidth="97.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="IssuedCount" layoutX="120.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="43.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="209.0" layoutY="178.0" prefHeight="54.0" prefWidth="197.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+               <children>
+                  <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFAULTER" wrappingWidth="126.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="DefaulterCount" layoutX="147.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="26.0" layoutY="178.0" prefHeight="54.0" prefWidth="165.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+               <children>
+                  <Text fx:id="RenewedCount" layoutX="134.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="33.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" RENEWED :" wrappingWidth="133.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="26.0" layoutY="102.0" prefHeight="54.0" prefWidth="165.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+               <children>
+                  <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOKS : " wrappingWidth="97.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="BookCount" layoutX="114.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="59.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane layoutX="424.0" layoutY="178.0" prefHeight="54.0" prefWidth="178.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+               <children>
+                  <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FINE :" wrappingWidth="84.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="fine" layoutX="98.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="59.13671875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="560.0" layoutY="26.0" onMousePressed="#settings" pickOnBounds="true" preserveRatio="true">
+               <Image fx:id="settingImage" url="@../Images/setting.png" />
+            </ImageView>
          </children>
       </Pane>
+      <Label layoutX="27.0" layoutY="21.0" prefHeight="42.0" prefWidth="141.0" text="DASHBOARD">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

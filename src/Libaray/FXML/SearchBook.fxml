@@ -33,7 +33,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="Member_Name2" layoutX="34.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Sno" wrappingWidth="245.6728515625">
+            <Text fx:id="Member_Name2" layoutX="34.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book id" wrappingWidth="245.6728515625">
                <font>
                   <Font size="20.0" />
                </font>

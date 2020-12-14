@@ -119,6 +119,7 @@ import java.util.logging.Logger;
 //}
 
 public class BooksCollection implements Initializable{
+
     ObservableList<Book> list = FXCollections.observableArrayList();
    public AnchorPane rootPane;
    public javafx.scene.control.TableView<Book>TableView;
@@ -128,6 +129,7 @@ public class BooksCollection implements Initializable{
    public TableColumn<Book,String>colAuther;
    public TableColumn<Book,String>colDate;
    public TableColumn<Book,Boolean> colAvailiblity;
+
 //radio button
     public TextField searchEngine;
     public RadioButton sortSno;

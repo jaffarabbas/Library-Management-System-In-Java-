@@ -21,7 +21,8 @@
       <Pane layoutX="6.0" layoutY="115.0" prefHeight="344.0" prefWidth="629.0">
          <children>
             <ListView fx:id="BooksDetials" layoutY="6.0" prefHeight="283.0" prefWidth="629.0" />
-            <Button fx:id="ReniewPssuedBooks" layoutX="272.0" layoutY="295.0" mnemonicParsing="false" onAction="#Renew_Issued_Books" prefHeight="35.0" prefWidth="84.0" text="Renew" />
+            <Button fx:id="ReniewissuedBooks" layoutX="192.0" layoutY="295.0" mnemonicParsing="false" onAction="#Renew_Issued_Books" prefHeight="35.0" prefWidth="84.0" text="Renew" />
+            <Button fx:id="SUbmissionOfIssuedBook" layoutX="341.0" layoutY="295.0" mnemonicParsing="false" onAction="#Submission_Of_Issued_Books" prefHeight="35.0" prefWidth="84.0" text="Submission" />
          </children></Pane>
       <Pane fx:id="Pane_Main1" layoutX="147.0" layoutY="14.0" prefHeight="56.0" prefWidth="351.0">
          <children>
