@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -28,6 +30,19 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Edit" onAction="#BookEdit" />
+               </items>
+              <items>
+                <MenuItem mnemonicParsing="false" text="Delete" onAction="#BookDelete" />
+              </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Refresh" onAction="#Refresh" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
    </children>
 </AnchorPane>

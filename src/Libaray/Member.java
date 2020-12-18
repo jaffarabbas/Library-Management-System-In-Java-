@@ -1,18 +1,19 @@
 package Libaray;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
+import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class Member {
+public class Member implements Initializable {
 
     public AnchorPane rootpane;
     public Pane member_pane;
@@ -21,7 +22,13 @@ public class Member {
     public TextField address_member;
     public TextField card_member;
     public Button member_insertion;
-    public DatePicker regester_date;
+    //Editable
+    private Boolean IsEditable = Boolean.FALSE;
+    DbConn connect;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        connect = DbConn.getInstance();
+    }
 
     public void BookInserted(ActionEvent actionEvent) throws SQLException {
         Window owner = member_insertion.getScene().getWindow();
@@ -46,9 +53,10 @@ public class Member {
                     "Please enter your Card number");
             return;
         }
-        if(regester_date.getValue().equals("")) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Please enter your date");
+
+        //Edit check
+        if(IsEditable){
+            handleEditMethod();
             return;
         }
 
@@ -56,18 +64,37 @@ public class Member {
         String number = number_member.getText();
         String address = address_member.getText();
         String card_number = card_member.getText();
-        LocalDate insertion_date = regester_date.getValue();
 
-        DbConn connect = new DbConn();
-
-        int flag = connect.insert_Member_query_Executer(name,number,address,card_number,insertion_date);
+        int flag = connect.insert_Member_query_Executer(name,number,address,card_number);
         if(flag == 1){
-            infoBox("Memeber add Successful!", null, "Failed");
+            infoBox("Member add Successful!", null, "Failed");
         }
         else{
             infoBox("Failed!!", null, "Failed");
         }
 
+    }
+
+    public void UpdateInformation(Member_list.Members members){
+        card_member.setText(members.getCard_number());
+        number_member.setText(members.getNumber());
+        name_member.setText(members.getName());
+        address_member.setText(members.getAddress());
+        card_member.setEditable(false);
+        IsEditable = Boolean.TRUE;
+    }
+    //update query fro edit
+    private void handleEditMethod() {
+        Member_list.Members member = new Member_list.Members(name_member.getText(),number_member.getText(),address_member.getText(),card_member.getText(),timestamp());
+        if(connect.updateMember(member)){
+            AlertMaker.showAlert("Successful!!","Member Updated");
+        }else{
+            AlertMaker.showError("Error!","Update Failed");
+        }
+    }
+
+    private String timestamp() {
+        return "";
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

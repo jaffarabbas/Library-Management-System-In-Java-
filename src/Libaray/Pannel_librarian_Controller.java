@@ -33,7 +33,7 @@ public class Pannel_librarian_Controller {
             rootpane.getChildren().setAll(pane);
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
@@ -43,17 +43,17 @@ public class Pannel_librarian_Controller {
                 rootpane.getChildren().setAll(pane);
             }
             catch (IOException e){
-                Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
             }
     }
 
-    public void REGESTER_METHOD(ActionEvent actionEvent) {
+    public void NEW_MEMBER_METHOD(ActionEvent actionEvent) {
         try{
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Regester.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Member_Insertion.fxml"));
             rootpane.getChildren().setAll(pane);
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
@@ -63,7 +63,7 @@ public class Pannel_librarian_Controller {
             rootpane.getChildren().setAll(pane);
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
@@ -73,7 +73,17 @@ public class Pannel_librarian_Controller {
             rootpane.getChildren().setAll(pane);
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
+        }
+    }
+
+    public void REGESTER_METHOD(ActionEvent actionEvent) {
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Regester.fxml"));
+            rootpane.getChildren().setAll(pane);
+        }
+        catch (IOException e){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
@@ -83,17 +93,7 @@ public class Pannel_librarian_Controller {
             rootpane.getChildren().setAll(pane);
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
-        }
-    }
-
-    public void NEW_MEMBER_METHOD(ActionEvent actionEvent) {
-        try{
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Member_Insertion.fxml"));
-            rootpane.getChildren().setAll(pane);
-        }
-        catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
@@ -103,11 +103,20 @@ public class Pannel_librarian_Controller {
             rootpane.getChildren().setAll(pane);
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
     public void DEFAULTER_METHOD(ActionEvent actionEvent) {
+        try{
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("FXML/Defaulter.fxml"));
+            rootpane.getChildren().setAll(pane);
+//            Defaulter obj = new Defaulter();
+//            obj.GenerateDefaulter();
+        }
+        catch (IOException e){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 
     public void minimize(ActionEvent actionEvent) {
@@ -117,5 +126,14 @@ public class Pannel_librarian_Controller {
 
     public void CloseApp(ActionEvent actionEvent) {
         System.exit(1);
+    }
+
+    public void FullScreen(ActionEvent actionEvent) {
+        Stage stage = (Stage)((Button) actionEvent.getSource()).getScene().getWindow();
+        if(stage.isFullScreen()){
+            stage.setFullScreen(false);
+        }else{
+            stage.setFullScreen(true);
+        }
     }
 }

@@ -28,8 +28,14 @@ public class DbConn{
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
-    private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
-    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (`id`, `name`, `number`, `address`, `card_number`, `insertion_date`) VALUES (NULL,?,?, ?, ?, ?)";
+    private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`) VALUES (NULL,?,?, ?, ?)";
+    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (name`, `number`, `address`, `card_number`) VALUES (?,?, ?, ?)";
+    private static final String DELETE_BOOKS = "DELETE FROM `book_collection` WHERE sno = ?";
+    private static final String IS_BOOK_IS_ALREADY_ISSUED_BOOKS = "SELECT COUNT(*) FROM issued_books WHERE bookId = ?";
+    private static final String UPDATE_BOOK = "UPDATE `book_collection` SET name = ? ,isbn = ? , auther = ? WHERE sno = ?";
+    private static final String DELETE_MEMBER = "DELETE FROM `member_collection` WHERE card_number = ?";
+    private static final String IS_MEMBER_IS_ALREADY_HAVE_BOOKS = "SELECT COUNT(*) FROM issued_books WHERE memberId = ?";
+    private static final String UPDATE_MEMBER = "UPDATE `member_collection` SET name = ? ,number = ? , address = ? WHERE card_number = ?";
 
 
     public static String UserId;
@@ -68,14 +74,13 @@ public class DbConn{
 
     //Books inserteion Metthod
 
-    public int insert_Books_query_Executer(String sno, String name, String isbn, String author, LocalDate date) throws SQLException {
+    public int insert_Books_query_Executer(String sno, String name, String isbn, String author) throws SQLException {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_BOOK) ;
             preparedStatement.setString(1, sno);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, isbn);
             preparedStatement.setString(4, author);
-            preparedStatement.setString(5, String.valueOf(date));
     
             System.out.println(preparedStatement);
               int resultSet =  preparedStatement.executeUpdate();
@@ -87,14 +92,13 @@ public class DbConn{
     }
 
     //Member insertion
-    public int insert_Member_query_Executer(String name, String number, String address, String cardNumber, LocalDate date) throws SQLException {
+    public int insert_Member_query_Executer(String name, String number, String address, String cardNumber) throws SQLException {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY_MEMBER) ;
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, number);
             preparedStatement.setString(3, address);
             preparedStatement.setString(4, cardNumber);
-            preparedStatement.setString(5, String.valueOf(date));
 
             System.out.println(preparedStatement);
             int resultSet =  preparedStatement.executeUpdate();
@@ -103,6 +107,100 @@ public class DbConn{
             e.printStackTrace();
         }
         return 0;
+    }
+
+    //book deletion
+    public boolean DeleteBooks(BooksCollection.Book books){
+        try {
+             PreparedStatement statement = connection.prepareStatement(DELETE_BOOKS);
+             statement.setString(1,books.getSno());
+             int result = statement.executeUpdate();
+             if(result ==  1){
+                 return true;
+             }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    //checking issued book that it already exist
+    public boolean IsBookAlreadyIssued(BooksCollection.Book books){
+        try {
+            PreparedStatement statement = connection.prepareStatement(IS_BOOK_IS_ALREADY_ISSUED_BOOKS);
+            statement.setString(1,books.getSno());
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                int count = resultSet.getInt(1);
+                System.out.println("Already issue : "+count);
+                return count > 0;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    //Update Book
+    public boolean updateBook(BooksCollection.Book book){
+       try{
+           PreparedStatement statement = connection.prepareStatement(UPDATE_BOOK);
+           statement.setString(1, book.getName());
+           statement.setString(2, book.getAuthor());
+           statement.setString(3, book.getIsbn());
+           statement.setString(4,book.getSno());
+           int result = statement.executeUpdate();
+           return (result>0);
+       }catch (SQLException e){
+           e.printStackTrace();
+       }
+       return false;
+    }
+
+    //Members crud
+
+    //book deletion
+    public boolean DeleteMembers(Member_list.Members members){
+        try {
+            PreparedStatement statement = connection.prepareStatement(DELETE_MEMBER);
+            statement.setString(1,members.getCard_number());
+            int result = statement.executeUpdate();
+            if(result ==  1){
+                return true;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    //checking issued book that it already exist
+    public boolean IsMemberIsAlreadyIssued(Member_list.Members members){
+        try {
+            PreparedStatement statement = connection.prepareStatement(IS_MEMBER_IS_ALREADY_HAVE_BOOKS);
+            statement.setString(1, members.getCard_number());
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                int count = resultSet.getInt(1);
+                System.out.println("Already issue : "+count);
+                return count > 0;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    //Update Book
+    public boolean updateMember(Member_list.Members members){
+        try{
+            PreparedStatement statement = connection.prepareStatement(UPDATE_MEMBER);
+            statement.setString(1, members.getName());
+            statement.setString(2, members.getNumber());
+            statement.setString(3, members.getAddress());
+            statement.setString(4, members.getCard_number());
+            int result = statement.executeUpdate();
+            return (result>0);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

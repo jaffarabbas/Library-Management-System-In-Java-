@@ -11,14 +11,14 @@
    <children>
       <Pane layoutX="88.0" layoutY="14.0" prefHeight="306.0" prefWidth="424.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="ExpiryDay" layoutX="92.0" layoutY="88.0" prefHeight="41.0" prefWidth="241.0" />
-            <TextField fx:id="Fine" layoutX="92.0" layoutY="153.0" prefHeight="41.0" prefWidth="241.0" />
+            <TextField fx:id="ExpiryDay" layoutX="92.0" layoutY="88.0" prefHeight="41.0" prefWidth="241.0" promptText="Expiry days" />
             <Label layoutX="127.0" layoutY="14.0" prefHeight="54.0" prefWidth="198.0" text="SETTINGS">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
             <Button fx:id="SettingsUpdate" layoutX="168.0" layoutY="221.0" mnemonicParsing="false" onAction="#SettingsUpdate" prefHeight="41.0" prefWidth="89.0" text="SUBMIT" />
+            <TextField fx:id="Fine" layoutX="92.0" layoutY="153.0" prefHeight="41.0" prefWidth="241.0" promptText="Fine" />
          </children>
       </Pane>
    </children>

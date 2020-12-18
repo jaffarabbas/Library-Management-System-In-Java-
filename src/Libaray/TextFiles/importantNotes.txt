@@ -1,0 +1,39 @@
+BOOK:
+    Id
+    S.no
+    name
+    isbn
+    auther
+    insertion date
+Issued_Books:
+    Id
+    BookSno
+    Book_Name
+    Isbn
+    Member_name
+    MemberCard_number
+    Member_number
+    Issue_date_of_Book
+    Expire_date_book
+
+
+CREATE TABLE Issued_Books (
+ bookId varchar(200) PRIMARY KEY,
+ memberId varchar(200),
+ issueTime timestamp DEFAULT CURRENT_TIMESTAMP,
+ renew_count integer DEFAULT 0,
+ FOREIGN KEY (bookID) REFERENCES book_collection(sno),
+ FOREIGN KEY (memberId) REFERENCES member_collection(card_number)
+ )
+
+CREATE TABLE Defaulters (
+ id int(11) AUTO_INCREMENT UNIQUE,
+ bookId varchar(200) PRIMARY KEY,
+ memberId varchar(200),
+ issueTime timestamp DEFAULT CURRENT_TIMESTAMP,
+ renew_count integer DEFAULT 0,
+ expiry_date varchar(200),
+ fine VARCHAR(100) NULL,
+ FOREIGN KEY (bookID) REFERENCES book_collection(sno),
+ FOREIGN KEY (memberId) REFERENCES member_collection(card_number)
+ )

@@ -140,6 +140,11 @@ public class Regester_Gerenal implements Initializable {
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
-        TableView.getItems().setAll(list);
+        TableView.setItems(list);
+    }
+
+    public String ExpiryDate(){
+
+        return "";
     }
 }

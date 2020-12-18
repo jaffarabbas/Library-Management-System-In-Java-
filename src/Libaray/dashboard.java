@@ -54,7 +54,7 @@ public class dashboard implements Initializable {
             stage.show();
         }
         catch (IOException e){
-            Logger.getLogger(Library.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 
@@ -132,7 +132,8 @@ public class dashboard implements Initializable {
 //        }
     }
     public void FineCalculator(){
-        double amount = 30;
-        fine.setText(String.valueOf(amount));
+        Preferences preferences = Preferences.getPreferences();
+        float FineTaker = preferences.getFinePerDay();
+        fine.setText(String.valueOf(FineTaker));
     }
 }

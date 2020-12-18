@@ -2,37 +2,34 @@ package Libaray;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Member_list implements Initializable {
 
-
-
     ObservableList<Members> list = FXCollections.observableArrayList();
     public AnchorPane rootPane;
     public javafx.scene.control.TableView<Members> TableView;
-    public TableColumn<Members,String> colID;
     public TableColumn<Members,String> colName;
     public TableColumn<Members,String> colNumber;
     public TableColumn<Members,String> colAddress;
@@ -45,16 +42,16 @@ public class Member_list implements Initializable {
     public RadioButton sortDate;
     public RadioButton sortAll;
     public TextField searchEngineMember;
-
+    DbConn connect;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        connect = DbConn.getInstance();
         ValueinSertion();
         loadData();
         Advancesearch();
     }
 
     private void ValueinSertion(){
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -62,16 +59,14 @@ public class Member_list implements Initializable {
         colDate.setCellValueFactory(new PropertyValueFactory<Members,String>("insertdate"));
     }
 
-     public static class Members{
-         private final SimpleStringProperty id;
+    public static class Members{
          private final SimpleStringProperty name;
          private final SimpleStringProperty number;
          private final SimpleStringProperty address;
          private final SimpleStringProperty card_number;
          private final SimpleStringProperty insertdate;
 
-         public Members(String id ,String name , String number ,String address , String card_number , String insertion_date){
-             this.id = new SimpleStringProperty(id);
+         public Members(String name, String number, String address, String card_number, String insertion_date){
              this.name = new SimpleStringProperty(name);
              this.number = new SimpleStringProperty(number);
              this.address = new SimpleStringProperty(address);
@@ -79,9 +74,6 @@ public class Member_list implements Initializable {
              this.insertdate = new SimpleStringProperty(insertion_date);
          }
 
-         public String getId() {
-             return id.get();
-         }
          public String getName(){
              return name.get();
          }
@@ -94,34 +86,32 @@ public class Member_list implements Initializable {
          public String getCard_number(){
              return card_number.get();
          }
-         public String getInsertDate(){
-             return insertdate.get();
-         }
-
+         public String getDate(){return  insertdate.get();}
          public SimpleStringProperty insertdateProperty() {
-             return insertdate;
+            return insertdate;
          }
      }
 
+
     private void loadData(){
+        list.clear();
         DbConn connect = new DbConn();
         String SELECT_MEMBER_QUERY = "select * from member_collection";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(SELECT_MEMBER_QUERY);
         try {
             while (resultSet.next()) {
-                String Id = resultSet.getString("id");
                 String Name = resultSet.getString("name");
                 String Number = resultSet.getString("number");
                 String Address = resultSet.getString("address");
                 String Card_number = resultSet.getString("card_number");
                 String Dates =resultSet.getString("insertion_date");
-                list.add(new Members(Id,Name,Number,Address,Card_number,Dates));
+                list.add(new Members(Name,Number,Address,Card_number,Dates));
             }
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
-        TableView.getItems().setAll(list);
+        TableView.setItems(list);
     }
 
     //Advance Search
@@ -153,8 +143,8 @@ public class Member_list implements Initializable {
                         return true; // Filter matches first name.
                     }
                 }else if(sortDate.isSelected()){
-                    if (search.getInsertDate().contains(lowerCaseFilter)){
-                        return true;
+                    if (search.getDate().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; // Filter matches first name.
                     }
                 }else if(sortAll.isSelected()) {
                     if(search.getName().toLowerCase().contains(lowerCaseFilter)){
@@ -167,8 +157,8 @@ public class Member_list implements Initializable {
                         return true;
                     }else if(search.getCard_number().toLowerCase().contains(lowerCaseFilter)){
                         return true;
-                    }else if(search.getInsertDate().toLowerCase().contains(lowerCaseFilter)){
-                        return true;
+                    }else if (search.getDate().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; // Filter matches first name.
                     }
                 }
                 // If filter text is empty, display all persons.
@@ -191,6 +181,63 @@ public class Member_list implements Initializable {
         TableView.setItems(sortedData);
     }
 
+    //Crud
+    public void MemberEdit(ActionEvent actionEvent) {
+        Members selectedForEdit = TableView.getSelectionModel().getSelectedItem();
+        if(selectedForEdit == null){
+            AlertMaker.showError("Failed!","Unable To Delete Please Select The Row");
+            return;
+        }
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXML/Member_Insertion.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Member controller = (Member) fxmlLoader.getController();
+            controller.UpdateInformation(selectedForEdit);
+            Stage stage = new Stage();
+            stage.setTitle("Edit Book");
+            stage.setScene(new Scene(root));
+            stage.show();
+            stage.setOnCloseRequest((e)->{
+                RefreshMember(new ActionEvent());
+            });
+        }
+        catch (IOException e){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
+        }
+    }
 
+    public void MemberDelete(ActionEvent actionEvent) {
+        Members selectDeleteRow = TableView.getSelectionModel().getSelectedItem();
+        if(selectDeleteRow == null){
+            AlertMaker.showError("Failed!","Unable To Delete Please Select The Row");
+            return;
+        }
+          boolean check = connect.IsMemberIsAlreadyIssued(selectDeleteRow);
+        if(check){
+            AlertMaker.showError("Failed!!","Book "+selectDeleteRow.getName()+" Cannot be Deleted\nMember is Already Issued");
+        }else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Deleting the Member");
+            alert.setContentText("Are you sure you want to Delete " + selectDeleteRow.getName() + " ?");
+            Optional<ButtonType> answer = alert.showAndWait();
+            if (answer.get().equals(ButtonType.OK)) {
+                //Delete Book
+                boolean result = connect.DeleteMembers(selectDeleteRow);
+                if (result) {
+                    AlertMaker.showAlert("Successful!", "Member" + selectDeleteRow.getName() + " Deleted Successfully!!");
+                    list.remove(selectDeleteRow);
+                } else {
+                    AlertMaker.showError("Failed!!", "Member " + selectDeleteRow.getName() + " Cannot be Deleted");
+                }
+            } else {
+                AlertMaker.showAlert("Error In Deleting!!", "Book Cannot be Deleted");
+            }
+        }
+    }
+
+
+    public void RefreshMember(ActionEvent actionEvent) {
+        loadData();
+    }
 }
 
