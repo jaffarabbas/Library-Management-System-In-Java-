@@ -118,18 +118,18 @@ public class dashboard implements Initializable {
         }
     }
     public void DefaulterCounter(){
-//        String DEFAULTER_COUNT = "";
-//        ResultSet resultSet = connect.execQuery(DEFAULTER_COUNT);
-//        int COUNT = 0;
-//        try {
-//            while (resultSet.next()) {
-//                String SnoCount = resultSet.getString("sno");
-//                COUNT++;
-//            }
-//            BookCount.setText(String.valueOf(COUNT));
-//        }catch (SQLException e){
-//            Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
-//        }
+        String DEFAULTER_COUNT = "select bookId from defaulters";
+        ResultSet resultSet = connect.execQuery(DEFAULTER_COUNT);
+        int COUNT = 0;
+        try {
+            while (resultSet.next()) {
+                String SnoCount = resultSet.getString("bookId");
+                COUNT++;
+            }
+            DefaulterCount.setText(String.valueOf(COUNT));
+        }catch (SQLException e){
+            Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
     public void FineCalculator(){
         Preferences preferences = Preferences.getPreferences();
