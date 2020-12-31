@@ -8,16 +8,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Issue_Book">
+<AnchorPane fx:id="rootpane" prefHeight="565.0" prefWidth="684.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Issue_Book">
    <children>
-      <Pane fx:id="Pane_Main" layoutX="24.0" layoutY="84.0" prefHeight="149.0" prefWidth="594.0">
+      <Pane fx:id="Pane_Main" layoutX="34.0" layoutY="94.0" prefHeight="164.0" prefWidth="627.0">
          <children>
             <Label layoutX="47.0" layoutY="24.0" text="BOOK SNO">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="BookIdTaker" layoutX="47.0" layoutY="75.0" onAction="#LoadBook" prefHeight="30.0" prefWidth="205.0" />
+            <TextField fx:id="BookIdTaker" layoutX="47.0" layoutY="75.0" onAction="#LoadBook" prefHeight="30.0" prefWidth="205.0" style="-fx-background-radius: 30;" />
             <Text fx:id="bookName" layoutX="297.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Name" wrappingWidth="294.6728515625">
                <font>
                   <Font size="20.0" />
@@ -35,14 +35,14 @@
             </Text>
          </children>
       </Pane>
-      <Pane layoutX="24.0" layoutY="253.0" prefHeight="149.0" prefWidth="594.0">
+      <Pane layoutX="45.0" layoutY="270.0" prefHeight="156.0" prefWidth="594.0">
          <children>
             <Label layoutX="43.0" layoutY="24.0" text="MEMBER SNO">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="MemberIdTaker" layoutX="43.0" layoutY="75.0" onAction="#LoadMember" prefHeight="30.0" prefWidth="205.0" />
+            <TextField fx:id="MemberIdTaker" layoutX="43.0" layoutY="75.0" onAction="#LoadMember" prefHeight="30.0" prefWidth="205.0" style="-fx-background-radius: 30;" />
             <Text fx:id="Member_Name" layoutX="297.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member Name" wrappingWidth="245.6728515625">
                <font>
                   <Font size="20.0" />
@@ -60,12 +60,12 @@
             </Text>
          </children>
       </Pane>
-      <Label layoutX="206.0" layoutY="14.0" prefHeight="54.0" prefWidth="205.0" text="ISSUE BOOK" textAlignment="CENTER">
+      <Label layoutX="231.0" layoutY="26.0" prefHeight="54.0" prefWidth="223.0" text="ISSUE BOOK" textAlignment="CENTER">
          <font>
-            <Font size="37.0" />
+            <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <Button fx:id="IssueBook_id" layoutX="24.0" layoutY="417.0" mnemonicParsing="false" onAction="#IssueBook" prefHeight="45.0" prefWidth="594.0" text="ISSUE">
+      <Button fx:id="IssueBook_id" layoutX="45.0" layoutY="456.0" mnemonicParsing="false" onAction="#IssueBook" prefHeight="45.0" prefWidth="594.0" style="-fx-background-radius: 30; -fx-background-color: #132743;" text="ISSUE" textFill="#eeeeee">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>

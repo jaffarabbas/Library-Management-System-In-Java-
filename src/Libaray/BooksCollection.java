@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import java.util.LinkedList;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -24,13 +24,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BooksCollection implements Initializable{
-
+//   LinkedList BookList = new LinkedList();
+   //Datastructers
+   LinkedList<Book> BookList = new LinkedList<Book>();
    ObservableList<Book> list = FXCollections.observableArrayList();
    public AnchorPane rootPane;
    public javafx.scene.control.TableView<Book>TableView;
@@ -131,8 +134,7 @@ public class BooksCollection implements Initializable{
         }
 }
 
-    private void loadData(){
-        list.clear();
+    private void DataTaker(){
         String SELECT_BOOK_QUERY = "select * from book_collection";
         //  PreparqedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(SELECT_BOOK_QUERY);
@@ -144,10 +146,20 @@ public class BooksCollection implements Initializable{
                 String Auther = resultSet.getString("auther");
                 String Dates =resultSet.getString("insertion_date");
                 Boolean Avail = resultSet.getBoolean("availiblity");
-                list.add(new Book(Sno, Name, Isbn, Auther,Dates, Avail));
+                BookList.add(new Book(Sno, Name, Isbn, Auther,Dates, Avail));
             }
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+        }
+    }
+
+    private void loadData(){
+        list.clear();
+        DataTaker();
+        int i = 0;
+        while (BookList.size() != i) {
+            list.add(BookList.get(i));
+            i++;
         }
         TableView.setItems(list);
         //Advance Sorting of table items

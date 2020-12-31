@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -135,5 +136,77 @@ public class Pannel_librarian_Controller {
         }else{
             stage.setFullScreen(true);
         }
+    }
+
+    public void HoverEffectBtn1(MouseEvent mouseEvent) {
+        dashbored.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn1Over(MouseEvent mouseEvent) {
+        dashbored.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn2(MouseEvent mouseEvent) {
+        book_insertion.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn2Over(MouseEvent mouseEvent) {
+        book_insertion.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn3(MouseEvent mouseEvent) {
+        newMember.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn3Over(MouseEvent mouseEvent) {
+        newMember.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn4(MouseEvent mouseEvent) {
+        Book_list.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn4Over(MouseEvent mouseEvent) {
+        Book_list.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn5(MouseEvent mouseEvent) {
+        Member_list.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn5Over(MouseEvent mouseEvent) {
+        Member_list.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn6(MouseEvent mouseEvent) {
+        take_away.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn6Over(MouseEvent mouseEvent) {
+        take_away.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn7(MouseEvent mouseEvent) {
+        regester.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn7Over(MouseEvent mouseEvent) {
+        regester.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn8(MouseEvent mouseEvent) {
+        Resubmit.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn8Over(MouseEvent mouseEvent) {
+        Resubmit.setStyle("-fx-background-color: #132743;");
+    }
+
+    public void HoverEffectBtn9(MouseEvent mouseEvent) {
+        Desfaulter.setStyle("-fx-background-color:#85C3FF;");
+    }
+
+    public void HoverEffectBtn9Over(MouseEvent mouseEvent) {
+        Desfaulter.setStyle("-fx-background-color: #132743;");
     }
 }

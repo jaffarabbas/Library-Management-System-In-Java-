@@ -8,17 +8,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.BooksCollection">
+<AnchorPane fx:id="rootpane" prefHeight="565.0" prefWidth="684.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.BooksCollection">
    <children>
-      <TextField fx:id="searchEngine" layoutX="457.0" layoutY="8.0" prefHeight="27.0" prefWidth="163.0" promptText="Search for Value" />
-      <RadioButton fx:id="sortSno" layoutX="27.0" layoutY="13.0" mnemonicParsing="false" text="sno" />
-      <RadioButton fx:id="sortAuther" layoutX="196.0" layoutY="13.0" mnemonicParsing="false" text="Auther" />
-      <RadioButton fx:id="sortISBN" layoutX="140.0" layoutY="13.0" mnemonicParsing="false" text="ISBN" />
-      <RadioButton fx:id="sortName" layoutX="74.0" layoutY="13.0" mnemonicParsing="false" text="Name" />
-      <RadioButton fx:id="sortDate" layoutX="263.0" layoutY="13.0" mnemonicParsing="false" text="Date" />
-      <RadioButton fx:id="sortAvail" layoutX="319.0" layoutY="13.0" mnemonicParsing="false" text="Avail" />
-      <RadioButton fx:id="sortAll" layoutX="376.0" layoutY="13.0" mnemonicParsing="false" text="All" />
-      <TableView fx:id="TableView" layoutY="43.0" prefHeight="457.0" prefWidth="637.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0">
+      <TextField fx:id="searchEngine" layoutX="467.0" layoutY="18.0" prefHeight="27.0" prefWidth="172.0" promptText="Search for Value" style="-fx-background-radius: 30;" />
+      <RadioButton fx:id="sortSno" layoutX="37.0" layoutY="23.0" mnemonicParsing="false" text="sno" />
+      <RadioButton fx:id="sortAuther" layoutX="206.0" layoutY="23.0" mnemonicParsing="false" text="Auther" />
+      <RadioButton fx:id="sortISBN" layoutX="150.0" layoutY="23.0" mnemonicParsing="false" text="ISBN" />
+      <RadioButton fx:id="sortName" layoutX="84.0" layoutY="23.0" mnemonicParsing="false" text="Name" />
+      <RadioButton fx:id="sortDate" layoutX="273.0" layoutY="23.0" mnemonicParsing="false" text="Date" />
+      <RadioButton fx:id="sortAvail" layoutX="329.0" layoutY="23.0" mnemonicParsing="false" text="Avail" />
+      <RadioButton fx:id="sortAll" layoutX="386.0" layoutY="23.0" mnemonicParsing="false" text="All" />
+      <TableView fx:id="TableView" layoutY="53.0" prefHeight="487.0" prefWidth="685.0" stylesheets="@../CSS/Book_Collection.css">
          <columns>
             <TableColumn fx:id="colSno" maxWidth="3000.0" minWidth="5.0" prefWidth="40.0" text="S.NO" />
             <TableColumn fx:id="colName" maxWidth="4000.0" prefWidth="127.0" text="NAME" />
@@ -33,13 +33,7 @@
          <contextMenu>
             <ContextMenu>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Edit" onAction="#BookEdit" />
-               </items>
-              <items>
-                <MenuItem mnemonicParsing="false" text="Delete" onAction="#BookDelete" />
-              </items>
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Refresh" onAction="#Refresh" />
+                  <MenuItem mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
                </items>
             </ContextMenu>
          </contextMenu>

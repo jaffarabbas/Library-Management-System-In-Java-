@@ -8,103 +8,135 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="626.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 4, 0, 0, 0);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.dashboard">
+<AnchorPane fx:id="rootpane" prefHeight="565.0" prefWidth="684.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.dashboard">
    <children>
-      <Pane layoutX="7.0" layoutY="12.0" prefHeight="487.0" prefWidth="619.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="17.0" layoutY="15.0" prefHeight="520.0" prefWidth="684.0" style="-fx-background-color: #fff; -fx-background-radius: 30;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
          <children>
-            <Pane layoutX="209.0" layoutY="102.0" prefHeight="54.0" prefWidth="197.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+            <Pane layoutX="21.0" layoutY="54.0" prefHeight="108.0" prefWidth="208.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0); -fx-background-color: #132743;">
                <children>
-                  <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEMBERS :" wrappingWidth="126.13671875">
+                  <Text fill="#eeeeee" layoutX="70.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOKS : " wrappingWidth="110.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="MemberCount" layoutX="147.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.13671875">
+                  <Text fx:id="BookCount" fill="#eeeeee" layoutX="134.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="59.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="34.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="54.0" fitWidth="76.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/books.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="424.0" layoutY="102.0" prefHeight="54.0" prefWidth="178.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+            <Pane layoutX="245.0" layoutY="54.0" prefHeight="108.0" prefWidth="208.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0); -fx-background-color: #132743;">
                <children>
-                  <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISSUED :" wrappingWidth="97.13671875">
+                  <Text fill="#eeeeee" layoutX="74.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEMBERS :" wrappingWidth="133.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="IssuedCount" layoutX="120.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="43.13671875">
+                  <Text fx:id="MemberCount" fill="#eeeeee" layoutX="133.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="66.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="36.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="54.0" fitWidth="51.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/member.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="209.0" layoutY="178.0" prefHeight="54.0" prefWidth="197.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+            <Pane layoutX="466.0" layoutY="54.0" prefHeight="108.0" prefWidth="197.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0); -fx-background-color: #132743;">
                <children>
-                  <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFAULTER" wrappingWidth="126.13671875">
+                  <Text fill="#eeeeee" layoutX="85.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISSUED :" wrappingWidth="97.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="DefaulterCount" layoutX="147.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="49.13671875">
+                  <Text fx:id="IssuedCount" fill="#eeeeee" layoutX="116.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="66.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/tick.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="26.0" layoutY="178.0" prefHeight="54.0" prefWidth="165.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+            <Pane layoutX="244.0" layoutY="179.0" prefHeight="108.0" prefWidth="208.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0); -fx-background-color: #132743;">
                <children>
-                  <Text fx:id="RenewedCount" layoutX="134.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="33.13671875">
+                  <Text fill="#eeeeee" layoutX="68.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEFAULTER" wrappingWidth="140.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" RENEWED :" wrappingWidth="133.13671875">
+                  <Text fx:id="DefaulterCount" fill="#eeeeee" layoutX="134.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="66.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="54.0" fitWidth="59.0" layoutX="7.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/defaulter.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="26.0" layoutY="102.0" prefHeight="54.0" prefWidth="165.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+            <Pane layoutX="21.0" layoutY="179.0" prefHeight="108.0" prefWidth="208.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0); -fx-background-color: #132743;">
                <children>
-                  <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOKS : " wrappingWidth="97.13671875">
+                  <Text fx:id="RenewedCount" fill="#eeeeee" layoutX="137.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="66.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Text>
-                  <Text fx:id="BookCount" layoutX="114.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="59.13671875">
+                  <Text fill="#eeeeee" layoutX="67.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" RENEWED :" wrappingWidth="140.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="54.0" fitWidth="59.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/refresh.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="424.0" layoutY="178.0" prefHeight="54.0" prefWidth="178.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+            <Pane layoutX="466.0" layoutY="179.0" prefHeight="108.0" prefWidth="197.0" style="-fx-background-color: #FFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0); -fx-background-color: #132743;">
                <children>
-                  <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FINE :" wrappingWidth="84.13671875">
+                  <Text fill="#eeeeee" layoutX="84.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FINE :" wrappingWidth="84.13671875">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="fine" layoutX="98.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="59.13671875">
+                  <Text fx:id="fine" fill="#eeeeee" layoutX="99.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="84.13671874999989">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Text>
+                  <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="21.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/fine.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
-            <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="560.0" layoutY="26.0" onMousePressed="#settings" pickOnBounds="true" preserveRatio="true">
-               <Image fx:id="settingImage" url="@../Images/setting.png" />
+            <ImageView fitHeight="42.0" fitWidth="43.0" layoutX="602.0" layoutY="5.0" onMousePressed="#settings" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image fx:id="settingImage" url="@../Images/setting.png" />
+               </image>
             </ImageView>
+            <Label layoutX="40.0" layoutY="-7.0" prefHeight="54.0" prefWidth="228.0" text="DASHBOARD">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Label layoutX="27.0" layoutY="21.0" prefHeight="42.0" prefWidth="141.0" text="DASHBOARD">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

@@ -95,7 +95,8 @@ public class Renew_Books implements Initializable {
             String id = SearchIssuedBooks.getText();
             String query = "DELETE FROM issued_books WHERE bookId = '"+id+"'";
             String query2 = "UPDATE book_collection SET availiblity = true WHERE sno = '"+id+"'";
-            if(connect.execAction(query) && connect.execAction(query2)){
+            String query3 = "DELETE FROM defaulters WHERE bookId = '"+id+"'";
+            if(connect.execAction(query) && connect.execAction(query2) && connect.execAction(query3)){
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                 alert1.setContentText("Success!!");
                 alert1.setTitle(null);

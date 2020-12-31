@@ -12,11 +12,13 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Regester_Gerenal implements Initializable {
+    LinkedList<IssuedBooks> IssuedList = new LinkedList<>();
     ObservableList<IssuedBooks> list = FXCollections.observableArrayList();
     public AnchorPane rootPane;
     public javafx.scene.control.TableView<IssuedBooks> TableView;
@@ -120,7 +122,7 @@ public class Regester_Gerenal implements Initializable {
         }
     }
 
-    private void loadData(){
+    private void DataTaker(){
         DbConn connect = new DbConn();
         String ISSUED_ITEMS = "select issued_books.id,issued_books.bookId,book_collection.name,book_collection.isbn,member_collection.name,issued_books.memberId,issued_books.issueTime FROM ((issued_books INNER JOIN book_collection ON issued_books.bookId = book_collection.sno)INNER JOIN member_collection ON issued_books.memberId = member_collection.card_number) ORDER BY id ASC";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
@@ -134,8 +136,34 @@ public class Regester_Gerenal implements Initializable {
                 String MemberName = resultSet.getString("member_collection.name");
                 String MemberCard = resultSet.getString("memberId");
                 String IssueDate =resultSet.getString("issueTime");
+
+                //Expiry date Creation
+                String Days = IssueDate.substring(8,10);
+                String Month = IssueDate.substring(5,7);
+                String Year = IssueDate.substring(2,4);
+
+                //ye us date ko int me dal dia ham ne
+                int day = Integer.parseInt(Days);
+                int month = Integer.parseInt(Month);
+                int year = Integer.parseInt(Year);
+
+                Preferences preferences = Preferences.getPreferences();
+                int ExpiryNo = preferences.getNoOfDaysWithOutFIne();
+
+                int ExpiryDay = day+ExpiryNo;
+                if(ExpiryDay >= 32){
+                    ExpiryDay = 1;
+                    month +=month;
+                    if(month >= 12){
+                        month  = 1;
+                        year +=1;
+                    }
+                }
+
+                String FinalDate = String.valueOf(ExpiryDay)+"-"+String.valueOf(month)+"-"+String.valueOf(year);
+
 //                Boolean ExpiryDate = resultSet.getBoolean("");
-                list.add(new IssuedBooks(id,sno,BookName,BookIsbn,MemberName,MemberCard,IssueDate,"2-3-2"));
+                IssuedList.add(new IssuedBooks(id,sno,BookName,BookIsbn,MemberName,MemberCard,IssueDate,FinalDate));
             }
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
@@ -143,8 +171,14 @@ public class Regester_Gerenal implements Initializable {
         TableView.setItems(list);
     }
 
-    public String ExpiryDate(){
-
-        return "";
+    private void loadData() {
+        list.clear();
+        DataTaker();
+        int i = 0;
+        while (IssuedList.size() != i) {
+            list.add(IssuedList.get(i));
+            i++;
+        }
+        TableView.setItems(list);
     }
 }

@@ -15,11 +15,13 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Defaulter implements Initializable {
+    LinkedList<Defaulters> DefaulterList = new LinkedList<>();
     public AnchorPane rootPane;
     ObservableList<Defaulters> list = FXCollections.observableArrayList();
     public javafx.scene.control.TableView<Defaulters> TableView;
@@ -135,8 +137,7 @@ public class Defaulter implements Initializable {
         }
     }
 
-    private void loadData(){
-        GenerateDefaulter();
+    private void DataTaker(){
         String DEFAULTER = "select defaulters.id,defaulters.bookId,book_collection.name,book_collection.isbn,member_collection.name,defaulters.memberId,defaulters.issueTime,defaulters.expiry_date,defaulters.fine FROM ((defaulters INNER JOIN book_collection ON defaulters.bookId = book_collection.sno)INNER JOIN member_collection ON defaulters.memberId = member_collection.card_number)";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(DEFAULTER);
@@ -152,10 +153,22 @@ public class Defaulter implements Initializable {
                 String expiryDate = resultSet.getString("expiry_date");
                 String Fine = resultSet.getString("fine");
 //                Boolean ExpiryDate = resultSet.getBoolean("");
-                list.add(new Defaulters(id,sno,BookName,BookIsbn,MemberName,MemberCard,IssueDate,expiryDate,Fine));
+                DefaulterList.add(new Defaulters(id,sno,BookName,BookIsbn,MemberName,MemberCard,IssueDate,expiryDate,Fine));
             }
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+        }
+        TableView.setItems(list);
+    }
+
+    private void loadData(){
+        GenerateDefaulter();
+        list.clear();
+        DataTaker();
+        int i = 0;
+        while (DefaulterList.size() != i) {
+            list.add(DefaulterList.get(i));
+            i++;
         }
         TableView.setItems(list);
     }
@@ -189,6 +202,14 @@ public class Defaulter implements Initializable {
                 System.out.println("Expiry : "+ExpiryNo);
                 //ye expiry date kai din ko sql kai date kai dino se plus krha hai
                 int ExpiryDay = day+ExpiryNo;
+                if(ExpiryDay >= 32){
+                    ExpiryDay = 1;
+                    month +=month;
+                    if(month >= 12){
+                        month  = 1;
+                        year +=1;
+                    }
+                }
                 System.out.println("Expiry Day : "+ExpiryDay);
                 //ye us din ki date ajay gi
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

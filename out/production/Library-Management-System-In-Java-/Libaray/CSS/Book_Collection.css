@@ -1,0 +1,27 @@
+.table-view{
+	-fx-background-color: #FFFFFF;
+	-fx-background-radius: 20;
+	-fx-fill: #EEEEEE;
+}
+.table-view .column-header-background{
+	-fx-background-color:#132743;
+	-fx-background-radius: 40;
+	-fx-background-insets: 0 0 10 0;
+	-fx-padding: 0 0 10 0;
+}
+.table-view .column-header, .table-view .filler{
+	-fx-size: 40;
+	-fx-border-width: 0 0 10 0;
+	-fx-background-color:transparent;
+}
+.table-view .column-header .label{
+	-fx-text-fill: #EEEEEE;
+}
+.table-view:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EEEEEE;
+    -fx-fixed-cell-size: 40;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+}

@@ -20,13 +20,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Member_list implements Initializable {
-
+    LinkedList<Members> MemberList = new LinkedList<>();
     ObservableList<Members> list = FXCollections.observableArrayList();
     public AnchorPane rootPane;
     public javafx.scene.control.TableView<Members> TableView;
@@ -48,7 +49,7 @@ public class Member_list implements Initializable {
         connect = DbConn.getInstance();
         ValueinSertion();
         loadData();
-        Advancesearch();
+        AdvanceSearch();
     }
 
     private void ValueinSertion(){
@@ -93,8 +94,8 @@ public class Member_list implements Initializable {
      }
 
 
-    private void loadData(){
-        list.clear();
+    //Data structure
+    private void DataTaker(){
         DbConn connect = new DbConn();
         String SELECT_MEMBER_QUERY = "select * from member_collection";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
@@ -106,16 +107,28 @@ public class Member_list implements Initializable {
                 String Address = resultSet.getString("address");
                 String Card_number = resultSet.getString("card_number");
                 String Dates =resultSet.getString("insertion_date");
-                list.add(new Members(Name,Number,Address,Card_number,Dates));
+                MemberList.add(new Members(Name,Number,Address,Card_number,Dates));
             }
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
+    }
+
+    private void loadData(){
+        list.clear();
+        DataTaker();
+        int i = 0;
+        while (MemberList.size() != i) {
+            list.add(MemberList.get(i));
+            i++;
+        }
         TableView.setItems(list);
+        //Advance Sorting of table items
+        AdvanceSearch();
     }
 
     //Advance Search
-    private void Advancesearch(){
+    private void AdvanceSearch(){
         // Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<Members> filteredData = new FilteredList<>(list, b -> true);
 

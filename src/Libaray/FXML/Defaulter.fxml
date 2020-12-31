@@ -4,14 +4,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Defaulter">
+<AnchorPane fx:id="rootpane" prefHeight="565.0" prefWidth="684.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Libaray.Defaulter">
    <children>
-      <TableView fx:id="TableView" layoutX="157.0" layoutY="35.0" prefHeight="457.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="TableView" layoutX="5.0" layoutY="1.0" prefHeight="535.0" prefWidth="674.0" stylesheets="@../CSS/Defaulter.css" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="1.0">
          <columns>
             <TableColumn fx:id="colID" maxWidth="2000.0" minWidth="5.0" prefWidth="61.0" text="ID" />
             <TableColumn fx:id="colBookSno" maxWidth="2000.0" prefWidth="113.0" text="BSNO" />
-            <TableColumn fx:id="colBookName" prefWidth="98.0" text="BNAME" />
-            <TableColumn fx:id="colBookISBN" prefWidth="111.0" text="ISBN" />
+            <TableColumn fx:id="colBookName" prefWidth="97.0" text="BNAME" />
+            <TableColumn fx:id="colBookISBN" prefWidth="119.0" text="ISBN" />
             <TableColumn fx:id="colMemberName" maxWidth="4000.0" prefWidth="68.0" text="MNAME" />
             <TableColumn fx:id="colMemberCard" maxWidth="3500.0" prefWidth="75.0" text="MCARD" />
             <TableColumn fx:id="colSubmissionDate" maxWidth="3500.0" prefWidth="75.0" text="ISDATE" />
