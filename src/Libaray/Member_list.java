@@ -115,6 +115,7 @@ public class Member_list implements Initializable {
     }
 
     private void loadData(){
+        MemberList.clear();
         list.clear();
         DataTaker();
         int i = 0;

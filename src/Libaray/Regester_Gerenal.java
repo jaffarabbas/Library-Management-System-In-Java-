@@ -1,6 +1,5 @@
 package Libaray;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Regester_Gerenal implements Initializable {
+
     LinkedList<IssuedBooks> IssuedList = new LinkedList<>();
     ObservableList<IssuedBooks> list = FXCollections.observableArrayList();
     public AnchorPane rootPane;
@@ -28,6 +28,7 @@ public class Regester_Gerenal implements Initializable {
     public TableColumn<IssuedBooks,String> colBookISBN;
     public TableColumn<IssuedBooks,String> colMemberName;
     public TableColumn<IssuedBooks,String> colMemberCard;
+    public TableColumn<IssuedBooks,String> colRenewCount;
     public TableColumn<IssuedBooks,String> colSubmissionDate;
     public TableColumn<IssuedBooks,String> colExpiry;
 
@@ -36,7 +37,6 @@ public class Regester_Gerenal implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ValueinSertion();
         loadData();
-//        Advancesearch();
     }
 
     private void ValueinSertion(){
@@ -46,6 +46,7 @@ public class Regester_Gerenal implements Initializable {
         colBookISBN.setCellValueFactory(new PropertyValueFactory<>("BookISBN"));
         colMemberName.setCellValueFactory(new PropertyValueFactory<>("MemberName"));
         colMemberCard.setCellValueFactory(new PropertyValueFactory<>("MemberCardNumber"));
+        colRenewCount.setCellValueFactory(new PropertyValueFactory<>("renew_count"));
         colSubmissionDate.setCellValueFactory(new PropertyValueFactory<>("SubmissionDate"));
         colExpiry.setCellValueFactory(new PropertyValueFactory<>("ExpiryDate"));
     }
@@ -59,8 +60,9 @@ public class Regester_Gerenal implements Initializable {
         private final SimpleStringProperty MemberCardNumber;
         private final SimpleStringProperty SubmissionDate;
         private final SimpleStringProperty ExpiryDate;
+        private final SimpleStringProperty renew_count;
 
-        public IssuedBooks(String id, String bookSno, String bookName, String bookISBN, String memberName, String memberCardNumber, String submissionDate, String expiryDate) {
+        public IssuedBooks(String id, String bookSno, String bookName, String bookISBN, String memberName, String memberCardNumber, String submissionDate, String expiryDate, String renew_count) {
             this.Id = new SimpleStringProperty(id);
             this.BookSno = new SimpleStringProperty(bookSno);
             this.BookName = new SimpleStringProperty(bookName);
@@ -69,7 +71,9 @@ public class Regester_Gerenal implements Initializable {
             this.MemberCardNumber = new SimpleStringProperty(memberCardNumber);
             this.SubmissionDate = new SimpleStringProperty(submissionDate);
             this.ExpiryDate = new SimpleStringProperty(expiryDate);
+            this.renew_count = new SimpleStringProperty(renew_count);
         }
+
 
         public String getId() {
             return Id.get();
@@ -94,6 +98,9 @@ public class Regester_Gerenal implements Initializable {
         }
         public String isExpiryDate() {
             return ExpiryDate.get();
+        }
+        public String getRenew_count() {
+            return renew_count.get();
         }
 
         public void setId(String id) {
@@ -120,11 +127,15 @@ public class Regester_Gerenal implements Initializable {
         public void setExpiryDate(String expiryDate) {
             this.ExpiryDate.set(expiryDate);
         }
+        public void setRenew_count(String renew_count) {
+            this.renew_count.set(renew_count);
+        }
+
     }
 
     private void DataTaker(){
         DbConn connect = new DbConn();
-        String ISSUED_ITEMS = "select issued_books.id,issued_books.bookId,book_collection.name,book_collection.isbn,member_collection.name,issued_books.memberId,issued_books.issueTime FROM ((issued_books INNER JOIN book_collection ON issued_books.bookId = book_collection.sno)INNER JOIN member_collection ON issued_books.memberId = member_collection.card_number) ORDER BY id ASC";
+        String ISSUED_ITEMS = "select issued_books.id,issued_books.bookId,book_collection.name,book_collection.isbn,member_collection.name,issued_books.memberId,issued_books.issueTime,issued_books.renew_count FROM ((issued_books INNER JOIN book_collection ON issued_books.bookId = book_collection.sno)INNER JOIN member_collection ON issued_books.memberId = member_collection.card_number) ORDER BY id ASC";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(ISSUED_ITEMS);
         try {
@@ -136,6 +147,7 @@ public class Regester_Gerenal implements Initializable {
                 String MemberName = resultSet.getString("member_collection.name");
                 String MemberCard = resultSet.getString("memberId");
                 String IssueDate =resultSet.getString("issueTime");
+                String Renew_Count = resultSet.getString("renew_count");
 
                 //Expiry date Creation
                 String Days = IssueDate.substring(8,10);
@@ -163,7 +175,7 @@ public class Regester_Gerenal implements Initializable {
                 String FinalDate = String.valueOf(ExpiryDay)+"-"+String.valueOf(month)+"-"+String.valueOf(year);
 
 //                Boolean ExpiryDate = resultSet.getBoolean("");
-                IssuedList.add(new IssuedBooks(id,sno,BookName,BookIsbn,MemberName,MemberCard,IssueDate,FinalDate));
+                IssuedList.add(new IssuedBooks(id,sno,BookName,BookIsbn,MemberName,MemberCard,IssueDate,FinalDate,Renew_Count));
             }
         }catch (SQLException e){
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);

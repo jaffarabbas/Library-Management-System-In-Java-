@@ -154,6 +154,7 @@ public class BooksCollection implements Initializable{
     }
 
     private void loadData(){
+        BookList.clear();
         list.clear();
         DataTaker();
         int i = 0;
@@ -290,6 +291,6 @@ public class BooksCollection implements Initializable{
     }
 
     public void Refresh(ActionEvent actionEvent) {
-       loadData();
+         loadData();
     }
 }

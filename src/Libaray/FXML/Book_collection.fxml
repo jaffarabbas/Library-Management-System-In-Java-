@@ -33,6 +33,12 @@
          <contextMenu>
             <ContextMenu>
                <items>
+                  <MenuItem mnemonicParsing="false" onAction="#BookEdit" text="Edit" />
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#BookDelete" text="Delete" />
+               </items>
+               <items>
                   <MenuItem mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
                </items>
             </ContextMenu>

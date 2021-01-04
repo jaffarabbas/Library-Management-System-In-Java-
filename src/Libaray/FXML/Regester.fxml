@@ -14,6 +14,7 @@
             <TableColumn fx:id="colBookISBN" prefWidth="111.0" text="ISBN" />
             <TableColumn fx:id="colMemberName" maxWidth="4000.0" prefWidth="68.0" text="MNAME" />
             <TableColumn fx:id="colMemberCard" maxWidth="3500.0" prefWidth="75.0" text="MCARD" />
+            <TableColumn fx:id="colRenewCount" maxWidth="3500.0" prefWidth="75.0" text="RENEW" />
             <TableColumn fx:id="colSubmissionDate" maxWidth="3500.0" prefWidth="75.0" text="ISDATE" />
             <TableColumn fx:id="colExpiry" maxWidth="3500.0" prefWidth="66.0" text="EXDATE" />
          </columns>

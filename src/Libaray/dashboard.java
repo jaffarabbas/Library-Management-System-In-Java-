@@ -1,10 +1,15 @@
 package Libaray;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,12 +22,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class dashboard implements Initializable {
+    public TextField SearchBooksField;
+    public ListView<String> ViewSearchedBooks;
+    public TextField SearchMemberField;
+    public ListView<String> ViewSearchedMember;
+    LinkedList<Member_list.Members> MemberList = new LinkedList<>();
+    LinkedList<BooksCollection.Book> BookList = new LinkedList<BooksCollection.Book>();
+    ObservableList<String> issuedData = FXCollections.observableArrayList();
+    ObservableList<String> issuedData2 = FXCollections.observableArrayList();
     public AnchorPane rootPane;
     public Text BookCount;
     public Text MemberCount;
@@ -135,5 +150,86 @@ public class dashboard implements Initializable {
         Preferences preferences = Preferences.getPreferences();
         float FineTaker = preferences.getFinePerDay();
         fine.setText(String.valueOf(FineTaker));
+    }
+
+    //Search Algorithm uses here
+
+    public void SearchBook(ActionEvent actionEvent) {
+        String id = SearchBooksField.getText();
+        BookDataTaker();
+        int count_book = 0;
+        while(BookList.size()!=count_book){
+            if(BookList.element().getSno().equals(id)){
+                System.out.println("yes");
+                issuedData.add("Book Sno : "+BookList.element().getSno());
+                issuedData.add("Book Name : "+BookList.element().getName());
+                issuedData.add("Book ISBN : "+BookList.element().getIsbn());
+                issuedData.add("Book Author : "+BookList.element().getAuthor());
+                issuedData.add("Book Insertion Date : "+BookList.element().getDate());
+                issuedData.add("Book Availability : "+BookList.element().getAviliblity());
+                break;
+            }else{
+                System.out.println("No");
+            }
+            count_book++;
+        }
+        ViewSearchedBooks.getItems().setAll(issuedData);
+    }
+
+    public void SearchMember(ActionEvent actionEvent) {
+        String id = SearchMemberField.getText();
+        MemberDataTaker();
+        int count_member = 0;
+        while(MemberList.size()!=count_member){
+            if(MemberList.element().getCard_number().equals(id)){
+                System.out.println("yes");
+                issuedData2.add("Member Name : "+MemberList.element().getName());
+                issuedData2.add("Member Number : "+MemberList.element().getNumber());
+                issuedData2.add("Member Address : "+MemberList.element().getAddress());
+                issuedData2.add("Member Card Number : "+MemberList.element().getCard_number());
+                issuedData2.add("Member Insertion Date : "+MemberList.element().getDate());
+                break;
+            }else{
+                System.out.println("No");
+            }
+            count_member++;
+        }
+        ViewSearchedMember.getItems().setAll(issuedData2);
+    }
+    private void BookDataTaker(){
+        String SELECT_BOOK_QUERY = "select * from book_collection";
+        //  PreparqedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
+        ResultSet resultSet = connect.execQuery(SELECT_BOOK_QUERY);
+        try {
+            while (resultSet.next()) {
+                String Sno = resultSet.getString("sno");
+                String Name = resultSet.getString("name");
+                String Isbn = resultSet.getString("isbn");
+                String Auther = resultSet.getString("auther");
+                String Dates =resultSet.getString("insertion_date");
+                Boolean Avail = resultSet.getBoolean("availiblity");
+                BookList.add(new BooksCollection.Book(Sno, Name, Isbn, Auther,Dates, Avail));
+            }
+        }catch (SQLException e){
+            Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+        }
+    }
+    private void MemberDataTaker(){
+        DbConn connect = new DbConn();
+        String SELECT_MEMBER_QUERY = "select * from member_collection";
+        //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
+        ResultSet resultSet = connect.execQuery(SELECT_MEMBER_QUERY);
+        try {
+            while (resultSet.next()) {
+                String Name = resultSet.getString("name");
+                String Number = resultSet.getString("number");
+                String Address = resultSet.getString("address");
+                String Card_number = resultSet.getString("card_number");
+                String Dates =resultSet.getString("insertion_date");
+                MemberList.add(new Member_list.Members(Name,Number,Address,Card_number,Dates));
+            }
+        }catch (SQLException e){
+            Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+        }
     }
 }

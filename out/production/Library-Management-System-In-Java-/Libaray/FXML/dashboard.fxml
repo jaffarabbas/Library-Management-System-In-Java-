@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,7 +42,7 @@
                   </Text>
                   <Text fx:id="MemberCount" fill="#eeeeee" layoutX="133.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="66.13671875">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Text>
                   <ImageView fitHeight="54.0" fitWidth="51.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -136,6 +138,20 @@
                   <Font name="System Bold" size="34.0" />
                </font>
             </Label>
+            <TextField fx:id="SearchBooksField" layoutX="171.0" layoutY="298.0" onAction="#SearchBook" prefHeight="25.0" prefWidth="155.0" promptText="Book id" />
+            <ListView fx:id="ViewSearchedBooks" layoutX="40.0" layoutY="332.0" prefHeight="177.0" prefWidth="285.0" />
+            <TextField fx:id="SearchMemberField" layoutX="497.0" layoutY="298.0" onAction="#SearchMember" prefHeight="25.0" prefWidth="155.0" promptText="Member id" />
+            <ListView fx:id="ViewSearchedMember" layoutX="367.0" layoutY="332.0" prefHeight="177.0" prefWidth="285.0" />
+            <Text layoutX="40.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOK" wrappingWidth="84.13671874999977">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
+            <Text layoutX="367.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEMBER" wrappingWidth="118.13671874999977">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>
