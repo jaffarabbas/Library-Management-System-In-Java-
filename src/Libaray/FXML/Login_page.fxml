@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -16,19 +18,33 @@
                <children>
                   <VBox prefHeight="465.0" prefWidth="737.0" AnchorPane.bottomAnchor="-80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-133.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane prefHeight="464.0" prefWidth="719.0" style="-fx-background-color: #132743;">
+                        <Pane prefHeight="471.0" prefWidth="737.0" style="-fx-background-color: #132743;">
                            <children>
-                              <Label layoutX="467.0" layoutY="79.0" text="Username" textFill="#eeeeee" />
-                              <Label layoutX="42.0" layoutY="27.0" prefHeight="85.0" prefWidth="298.0" text="LOGIN" textFill="#eeeeee">
+                              <Label layoutX="467.0" layoutY="79.0" text="Username" textFill="#eeeeee">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                              <Label layoutX="123.0" layoutY="27.0" prefHeight="85.0" prefWidth="298.0" text="LOGIN" textFill="#eeeeee">
                            <font>
                               <Font name="System Bold" size="58.0" />
                            </font></Label>
                               <TextField fx:id="username" layoutX="458.0" layoutY="116.0" prefHeight="37.0" prefWidth="198.0" promptText="Username" style="-fx-background-radius: 30;" />
-                              <Label layoutX="468.0" layoutY="187.0" text="password" textFill="#eeeeee" />
+                              <Label layoutX="468.0" layoutY="187.0" text="password" textFill="#eeeeee">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                               <PasswordField fx:id="password" layoutX="458.0" layoutY="220.0" prefHeight="37.0" prefWidth="198.0" promptText="Password" style="-fx-background-radius: 30;" />
-                              <Button fx:id="login_button" layoutX="458.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitbutton" prefHeight="37.0" prefWidth="198.0" style="-fx-background-radius: 30;" text="Button" />
+                              <Button fx:id="login_button" layoutX="458.0" layoutY="306.0" mnemonicParsing="false" onAction="#submitbutton" prefHeight="37.0" prefWidth="198.0" style="-fx-background-radius: 30; -fx-background-color: #0085FF;" text="Button" textFill="#eeeeee">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                               <Button layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimize" text="-" />
                               <Button layoutX="676.0" layoutY="14.0" mnemonicParsing="false" onAction="#CloseApp" text="x" />
+                        <ImageView fitHeight="229.0" fitWidth="285.0" layoutX="111.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/admin.png" />
+                           </image>
+                        </ImageView>
                            </children>
                            <VBox.margin>
                               <Insets />

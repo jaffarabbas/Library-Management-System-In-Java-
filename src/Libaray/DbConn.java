@@ -29,7 +29,7 @@ public class DbConn{
     private static final String DATABASE_PASSWORD = "";
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
     private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`) VALUES (NULL,?,?, ?, ?)";
-    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (name`, `number`, `address`, `card_number`) VALUES (?,?, ?, ?)";
+    private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (`name`, `number`, `address`, `card_number`) VALUES (?, ?, ?,?)";
     private static final String DELETE_BOOKS = "DELETE FROM `book_collection` WHERE sno = ?";
     private static final String IS_BOOK_IS_ALREADY_ISSUED_BOOKS = "SELECT COUNT(*) FROM issued_books WHERE bookId = ?";
     private static final String UPDATE_BOOK = "UPDATE `book_collection` SET name = ? ,isbn = ? , auther = ? WHERE sno = ?";
@@ -49,28 +49,6 @@ public class DbConn{
               e.printStackTrace();
         }
     }
-
-    public boolean validate(String user, String password) throws SQLException {
-        // Step 1: Establishing a Connection and
-        // try-with-resource statement will auto close the connection.
-        try (// Step 2:Create a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_QUERY_LOGIN)) {
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, password);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
-                UserId = user;
-                return true;
-            }
-
-        } catch (SQLException e) {
-            // print SQL exception information
-            printSQLException(e);
-        }
-        return false;
-    }
-
 
     //Books inserteion Metthod
 
