@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Library_Management_System_In_Java__jar</output-path>
     <root id="archive" name="Library-Management-System-In-Java-.jar">
       <element id="module-output" name="Library-Management-System-In-Java-" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/gson-2.8.6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.base.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.controls.jar" path-in-jar="/" />
@@ -12,6 +11,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.media.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.swing.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Downloads/gson-2.8.6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../Github/JAVA_MYSQL_CONNECTER/mysql-connector-java-8.0.20/mysql-connector-java-8.0.20.jar" path-in-jar="/" />
     </root>
   </artifact>

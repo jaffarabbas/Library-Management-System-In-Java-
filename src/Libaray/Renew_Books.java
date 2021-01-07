@@ -1,5 +1,6 @@
 package Libaray;
 
+import Libaray.DbConnection.DbConn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,17 +36,19 @@ public class Renew_Books implements Initializable {
     }
 
     public void IssuedBookInfo(ActionEvent actionEvent) {
+        IssuedList.clear();
+        BookList.clear();
+        MemberList.clear();
         SubmissionStatus = false;
         String id = SearchIssuedBooks.getText();
-        BookDataTaker();
-        MemberDataTaker();
-        IssuedBookTaker();
-
+        BookDataTaker(id);
+        IssuedBookTaker(id);
         int count_book = 0;
-        while(BookList.size()!=count_book) {
+        while(IssuedList.size()!=count_book) {
             if (IssuedList.element().getBookSno().equals(id)) {
                 System.out.println("yes");
                 String MemberId = IssuedList.element().getMemberCardNumber();
+                MemberDataTaker(MemberId);
                 int renewCounter = Integer.parseInt(IssuedList.element().getRenew_count());
                 issuedData.add("Issue Date and Time : "+IssuedList.element().getSubmissionDate());
                 issuedData.add("Renew Count : "+renewCounter);
@@ -57,54 +60,18 @@ public class Renew_Books implements Initializable {
                 issuedData.add("\tBook Insertion Date : " + BookList.element().getDate());
                 issuedData.add("\tBook Availability : " + BookList.element().getAviliblity());
                 issuedData.add("\tMember Information : ");
-                issuedData.add("\tMember Name : "+MemberList.element().getName());
+                issuedData.add("\tMember Name : "+IssuedList.element().getMemberName());
                 issuedData.add("\tMember Number : "+MemberList.element().getNumber());
                 issuedData.add("\tMember Address : "+MemberList.element().getAddress());
-                issuedData.add("\tMember Card Number : "+MemberList.element().getCard_number());
+                issuedData.add("\tMember Card Number : "+IssuedList.element().getMemberCardNumber());
                 issuedData.add("\tMember Insertion Date : "+MemberList.element().getDate());
+                SubmissionStatus = true;
                 break;
             } else {
                 System.out.println("No");
             }
             count_book++;
         }
-//        ResultSet resultSet = connect.execQuery(query);
-//        try {
-//            while (resultSet.next()){
-//                String bookId = id;
-//                String MemberId = resultSet.getString("memberId");
-//                Timestamp issueTime = resultSet.getTimestamp("issueTime");
-//                int renewCounter = resultSet.getInt("renew_count");
-//
-//                issuedData.add("Issue Date and Time : "+issueTime.toGMTString());
-//                issuedData.add("Renew Count : "+renewCounter);
-//                issuedData.add("Book Information : ");
-//                query = "SELECT * FROM book_collection WHERE sno = '"+bookId+"'";
-//                ResultSet resultSet1 = connect.execQuery(query);
-//                while (resultSet1.next()){
-//                    issuedData.add("\tBook Sno : "+resultSet1.getString("sno"));
-//                    issuedData.add("\tBook Name : "+resultSet1.getString("name"));
-//                    issuedData.add("\tBook ISBN : "+resultSet1.getString("isbn"));
-//                    issuedData.add("\tBook Author : "+resultSet1.getString("auther"));
-//                    issuedData.add("\tBook Insertion Date : "+resultSet1.getString("insertion_date"));
-//                }
-//                issuedData.add("Member Information : ");
-//                query = "SELECT * FROM member_collection WHERE card_number = '"+MemberId+"'";
-//                ResultSet resultSet2 = connect.execQuery(query);
-//                while (resultSet2.next()){
-//                    issuedData.add("\tMember Name : "+resultSet2.getString("name"));
-//                    issuedData.add("\tMember Number : "+resultSet2.getString("number"));
-//                    issuedData.add("\tMember Address : "+resultSet2.getString("address"));
-//                    issuedData.add("\tMember Card Number : "+resultSet2.getString("card_number"));
-//                    issuedData.add("\tMember Insertion Date : "+resultSet2.getString("insertion_date"));
-//                }
-//                SubmissionStatus = true;
-//            }
-//        }catch (SQLException exception){
-//            DbConn.printSQLException(exception);
-//            Logger.getLogger(Renew_Books.class.getName()).log(Level.SEVERE,null,exception);
-//        }
-
         BooksDetials.getItems().setAll(issuedData);
     }
     //Submit book
@@ -191,8 +158,8 @@ public class Renew_Books implements Initializable {
         }
     }
     //Data
-    private void BookDataTaker(){
-        String SELECT_BOOK_QUERY = "select * from book_collection";
+    private void BookDataTaker(String id){
+        String SELECT_BOOK_QUERY = "select * from book_collection where sno = '"+id+"'";
         //  PreparqedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(SELECT_BOOK_QUERY);
         try {
@@ -209,9 +176,9 @@ public class Renew_Books implements Initializable {
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-    private void MemberDataTaker(){
+    private void MemberDataTaker(String id){
         DbConn connect = new DbConn();
-        String SELECT_MEMBER_QUERY = "select * from member_collection";
+        String SELECT_MEMBER_QUERY = "select * from member_collection where card_number = '"+id+"'";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(SELECT_MEMBER_QUERY);
         try {
@@ -227,9 +194,8 @@ public class Renew_Books implements Initializable {
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-    private void IssuedBookTaker(){
-        DbConn connect = new DbConn();
-        String ISSUED_ITEMS = "select issued_books.id,issued_books.bookId,book_collection.name,book_collection.isbn,member_collection.name,issued_books.memberId,issued_books.issueTime,issued_books.renew_count FROM ((issued_books INNER JOIN book_collection ON issued_books.bookId = book_collection.sno)INNER JOIN member_collection ON issued_books.memberId = member_collection.card_number) ORDER BY id ASC";
+    private void IssuedBookTaker(String ids){
+        String ISSUED_ITEMS = "select issued_books.id,issued_books.bookId,book_collection.name,book_collection.isbn,member_collection.name,issued_books.memberId,issued_books.issueTime,issued_books.renew_count FROM ((issued_books INNER JOIN book_collection ON issued_books.bookId = book_collection.sno)INNER JOIN member_collection ON issued_books.memberId = member_collection.card_number) WHERE bookId = '"+ids+"' ";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(ISSUED_ITEMS);
         try {

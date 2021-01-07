@@ -1,5 +1,6 @@
 package Libaray;
 
+import Libaray.DbConnection.DbConn;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -67,7 +68,7 @@ public class Member implements Initializable {
 
         int flag = connect.insert_Member_query_Executer(name,number,address,card_number);
         if(flag == 1){
-            infoBox("Member add Successful!", null, "Failed");
+            infoBox("Member add Successful!", null, "Successful!!");
         }
         else{
             infoBox("Failed!!", null, "Failed");

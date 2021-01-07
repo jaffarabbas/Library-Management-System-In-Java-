@@ -1,6 +1,6 @@
 package Libaray;
 
-import javafx.beans.property.Property;
+import Libaray.DbConnection.DbConn;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,12 +19,8 @@ import javafx.stage.Stage;
 import java.util.LinkedList;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;

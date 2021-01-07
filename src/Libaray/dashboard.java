@@ -1,9 +1,9 @@
 package Libaray;
 
+import Libaray.DbConnection.DbConn;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -15,14 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -72,7 +70,6 @@ public class dashboard implements Initializable {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-
     public void BookCounter(){
         String BOOK_COUNT = "select sno from book_collection";
         ResultSet resultSet = connect.execQuery(BOOK_COUNT);
@@ -87,7 +84,6 @@ public class dashboard implements Initializable {
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-
     public void MemberCounter(){
         String MEMBER_COUNT = "select card_number from member_collection";
         ResultSet resultSet = connect.execQuery(MEMBER_COUNT);
@@ -102,7 +98,6 @@ public class dashboard implements Initializable {
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-
     public void IssuedCounter(){
         String ISSUED_COUNT = "select availiblity from book_collection where availiblity = false";
         ResultSet resultSet = connect.execQuery(ISSUED_COUNT);
@@ -117,7 +112,6 @@ public class dashboard implements Initializable {
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-
     public void RenewedCounter(){
         String DEFAULTER_COUNT = "select renew_count from issued_books where renew_count !=0";
         ResultSet resultSet = connect.execQuery(DEFAULTER_COUNT);
@@ -156,7 +150,7 @@ public class dashboard implements Initializable {
 
     public void SearchBook(ActionEvent actionEvent) {
         String id = SearchBooksField.getText();
-        BookDataTaker();
+        BookDataTaker(id);
         int count_book = 0;
         while(BookList.size()!=count_book){
             if(BookList.element().getSno().equals(id)){
@@ -178,7 +172,7 @@ public class dashboard implements Initializable {
 
     public void SearchMember(ActionEvent actionEvent) {
         String id = SearchMemberField.getText();
-        MemberDataTaker();
+        MemberDataTaker(id);
         int count_member = 0;
         while(MemberList.size()!=count_member){
             if(MemberList.element().getCard_number().equals(id)){
@@ -196,8 +190,9 @@ public class dashboard implements Initializable {
         }
         ViewSearchedMember.getItems().setAll(issuedData2);
     }
-    private void BookDataTaker(){
-        String SELECT_BOOK_QUERY = "select * from book_collection";
+
+    private void BookDataTaker(String id){
+        String SELECT_BOOK_QUERY = "select * from book_collection where sno = '"+id+"'";
         //  PreparqedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(SELECT_BOOK_QUERY);
         try {
@@ -214,9 +209,10 @@ public class dashboard implements Initializable {
             Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
-    private void MemberDataTaker(){
+
+    private void MemberDataTaker(String id){
         DbConn connect = new DbConn();
-        String SELECT_MEMBER_QUERY = "select * from member_collection";
+        String SELECT_MEMBER_QUERY = "select * from member_collection where card_number = '"+id+"'";
         //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
         ResultSet resultSet = connect.execQuery(SELECT_MEMBER_QUERY);
         try {

@@ -1,5 +1,6 @@
 package Libaray;
 
+import Libaray.DbConnection.DbConn;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -12,6 +13,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -28,6 +30,8 @@ public class Issue_Book implements Initializable {
     public Button IssueBook_id;
     public TextField BookIdTaker;
     public TextField MemberIdTaker;
+    LinkedList<Member_list.Members> MemberList = new LinkedList<>();
+    LinkedList<BooksCollection.Book> BookList = new LinkedList<BooksCollection.Book>();
 
     DbConn connect;
     @Override
@@ -36,52 +40,47 @@ public class Issue_Book implements Initializable {
     }
 
     public void LoadBook(ActionEvent actionEvent) {
+        BookList.clear();
         clearBookCache();
         String getID = BookIdTaker.getText();
-        String query = "SELECT * FROM book_collection WHERE sno = '" + getID + "'";
-        ResultSet resultSet = connect.execQuery(query);
+        BookDataTaker(getID);
+        int count_book = 0;
         Boolean flag = false;
-        try{
-            while (resultSet.next()){
-                String booksNames = resultSet.getString("name");
-                String booksAuther = resultSet.getString("auther");
-                Boolean getAviliblity = resultSet.getBoolean("availiblity");
+            while (BookList.size()!=count_book){
+                String booksNames = BookList.element().getName();
+                String booksAuther = BookList.element().getAuthor();
+                Boolean getAviliblity = BookList.element().getAviliblity();
                 bookName.setText(booksNames);
                 AutherName.setText(booksAuther);
                 String available = (getAviliblity)?"Available":"Not Available";
                 Availiblity_Of_book.setText(available);
                 flag = true;
+                count_book++;
             }if(!flag){
                 bookName.setText("No Such Book Available");
             }
-        }
-        catch (SQLException e){
-            Logger.getLogger(Issue_Book.class.getName()).log(Level.SEVERE,null,e);
-        }
     }
 
     public void LoadMember(ActionEvent actionEvent) {
+        MemberList.clear();
         clearMemberCache();
         String getID = MemberIdTaker.getText();
-        String query = "SELECT * FROM member_collection WHERE card_number = '" + getID + "'";
-        ResultSet resultSet = connect.execQuery(query);
+        MemberDataTaker(getID);
+        int count_member = 0;
         Boolean flag = false;
-        try{
-            while (resultSet.next()){
-                String MemberNames = resultSet.getString("name");
-                String MemberCard = resultSet.getString("card_number");
-                String Number = resultSet.getString("number");
+            while (MemberList.size()!=count_member) {
+                String MemberNames = MemberList.element().getName();
+                String MemberCard = MemberList.element().getCard_number();
+                String Number = MemberList.element().getNumber();
                 Member_Name.setText(MemberNames);
                 Member_Number.setText(MemberCard);
                 Member_Card_Number.setText(Number);
                 flag = true;
-            }if(!flag){
+                count_member++;
+            }
+            if (!flag) {
                 Member_Name.setText("No Such Member in List");
             }
-        }
-        catch (SQLException e){
-            Logger.getLogger(Issue_Book.class.getName()).log(Level.SEVERE,null,e);
-        }
     }
 
     public void clearBookCache(){
@@ -128,6 +127,46 @@ public class Issue_Book implements Initializable {
             alert1.setTitle(null);
             alert1.setHeaderText("Book Issue Cancelled!!!");
             alert1.showAndWait();
+        }
+    }
+
+
+
+
+    private void BookDataTaker(String id){
+        String SELECT_BOOK_QUERY = "select * from book_collection where sno = '"+id+"'";
+        //  PreparqedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
+        ResultSet resultSet = connect.execQuery(SELECT_BOOK_QUERY);
+        try {
+            while (resultSet.next()) {
+                String Sno = resultSet.getString("sno");
+                String Name = resultSet.getString("name");
+                String Isbn = resultSet.getString("isbn");
+                String Auther = resultSet.getString("auther");
+                String Dates =resultSet.getString("insertion_date");
+                Boolean Avail = resultSet.getBoolean("availiblity");
+                BookList.add(new BooksCollection.Book(Sno, Name, Isbn, Auther,Dates, Avail));
+            }
+        }catch (SQLException e){
+            Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
+        }
+    }
+    private void MemberDataTaker(String id){
+        DbConn connect = new DbConn();
+        String SELECT_MEMBER_QUERY = "select * from member_collection where card_number = '"+id+"'";
+        //  PreparedStatement preparedStatement = connect.connection.prepareStatement(SELECT_BOOK_QUERY);
+        ResultSet resultSet = connect.execQuery(SELECT_MEMBER_QUERY);
+        try {
+            while (resultSet.next()) {
+                String Name = resultSet.getString("name");
+                String Number = resultSet.getString("number");
+                String Address = resultSet.getString("address");
+                String Card_number = resultSet.getString("card_number");
+                String Dates =resultSet.getString("insertion_date");
+                MemberList.add(new Member_list.Members(Name,Number,Address,Card_number,Dates));
+            }
+        }catch (SQLException e){
+            Logger.getLogger(BooksCollection.class.getName()).log(Level.SEVERE,null,e);
         }
     }
 }

@@ -1,19 +1,11 @@
-package Libaray;
+package Libaray.DbConnection;
 
-import Libaray.DbConnection.MainConnection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.DatePicker;
+import Libaray.BooksCollection;
+import Libaray.Member_list;
 
-import java.io.IOException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DbConn{
 
@@ -21,8 +13,6 @@ public class DbConn{
     public Statement statement;
     public ResultSet result;
     public static DbConn handler = null;
-
-
 
     private static final String DATABASE_URL = "jdbc:mysql://localhost/Library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DATABASE_USERNAME = "root";
@@ -217,7 +207,6 @@ public class DbConn{
         }
         return handler;
     }
-
 
     //print the error
     public static void printSQLException(SQLException ex) {
