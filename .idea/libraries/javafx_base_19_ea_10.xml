@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="javafx-base-19-ea+10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-base-19-ea+10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-controls-19-ea+10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-fxml-19-ea+10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-graphics-19-ea+10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-base-19-ea+10.jar!/" recursive="false" />
+    <jarDirectory url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-controls-19-ea+10.jar!/" recursive="false" />
+    <jarDirectory url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-fxml-19-ea+10.jar!/" recursive="false" />
+    <jarDirectory url="jar://$PROJECT_DIR$/../../../../softwares/jar_files/javafx-graphics-19-ea+10.jar!/" recursive="false" />
+  </library>
+</component>
