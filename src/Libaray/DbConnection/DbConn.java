@@ -14,9 +14,10 @@ public class DbConn{
     public ResultSet result;
     public static DbConn handler = null;
 
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/Library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost/library_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DATABASE_USERNAME = "root";
     private static final String DATABASE_PASSWORD = "";
+
     private static final String SELECT_QUERY_LOGIN = "SELECT * FROM login WHERE name = ? and password = ?";
     private static final String INSERT_QUERY_BOOK = "INSERT INTO `book_collection` (`id`, `sno`, `name`, `isbn`, `auther`) VALUES (NULL,?,?, ?, ?)";
     private static final String INSERT_QUERY_MEMBER = "INSERT INTO `member_collection` (`name`, `number`, `address`, `card_number`) VALUES (?, ?, ?,?)";
