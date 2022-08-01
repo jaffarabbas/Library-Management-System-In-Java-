@@ -179,7 +179,7 @@ public class Defaulter implements Initializable {
         ResultSet resultSet = connect.execQuery(query);
         try {
             while (resultSet.next()) {
-                // database se dat le kr aya hai
+                // database se date le kr aya hai
                 String Date = resultSet.getString("issueTime");
                 String BookId = resultSet.getString("bookId");
                 String MemberId = resultSet.getString("memberId");
